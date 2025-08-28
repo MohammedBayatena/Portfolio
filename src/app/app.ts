@@ -17,7 +17,6 @@ import {FileExplorerComponent} from './components/file-explorer/file-explorer.co
 import {JsExecutorComponent} from './components/js-executor/js-executor.component';
 import {DesktopIconComponent} from './components/desktop-icon/desktop-icon.component';
 import {WindowComponent} from './components/window/window.component';
-import {ContextMenuComponent} from './components/context-menu/context-menu.component';
 import {TaskbarComponent} from './components/taskbar/taskbar.component';
 import {CommonModule} from '@angular/common';
 import {Win98MediaPlayerComponent} from './components/win98-media-player/win98-media-player.component';
@@ -234,7 +233,7 @@ export class App implements OnInit, AfterViewInit {
           title: 'PDF Viewer - My CV',
           contentComponent: Win98PdfViewerComponent,
           contentInputs: {
-            pdfSrc: '/assets/documents/MohammedBayatenaBackEndCV2025.pdf',
+            pdfSrc: 'assets/documents/MohammedBayatenaBackEndCV2025.pdf',
             windowClose: () => this.windowService.close('my-cv')
           },
           x: 250,

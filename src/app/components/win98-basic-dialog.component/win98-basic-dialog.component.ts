@@ -16,7 +16,7 @@ export class Win98BasicDialogComponent extends NoisyComponent implements OnDestr
   override noiseUrl: string;
   @Input() options: DialogOptions | null = null;
 
-  private DialogNotificationURL = '/assets/sounds/w98dialogueOpen.mp3';
+  private DialogNotificationURL = 'assets/sounds/w98dialogueOpen.mp3';
 
   isVisible = false;
   private subscription: Subscription;

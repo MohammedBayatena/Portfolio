@@ -61,8 +61,8 @@ export class ClippyComponent implements OnInit {
 
   //Clippy Parameters
   doingATrick: boolean = false;
-  clippyBodySrc: string = '/assets/clippy/clippy.png';
-  clippyTrickSrc: string = '/assets/clippy/source.gif';
+  clippyBodySrc: string = 'assets/clippy/clippy.png';
+  clippyTrickSrc: string = 'assets/clippy/source.gif';
 
   // Drag and Drop Parameters
   private isDragging = false;

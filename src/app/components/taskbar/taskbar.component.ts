@@ -33,7 +33,7 @@ export class TaskbarComponent {
     {
       id: 'my-computer',
       title: 'My Computer',
-      iconUrl: '/assets/icons/startMenu/computer_explorer-5.png',
+      iconUrl: 'assets/icons/startMenu/computer_explorer-5.png',
       action: () => {
         this.windowService.open({
           id: 'file-explorer',
@@ -53,7 +53,7 @@ export class TaskbarComponent {
     {
       id: 'settings',
       title: 'Settings',
-      iconUrl: '/assets/icons/startMenu/computer-5.png',
+      iconUrl: 'assets/icons/startMenu/computer-5.png',
       action: () => {
         this.windowService.open({
           id: 'settings',
@@ -73,7 +73,7 @@ export class TaskbarComponent {
     {
       id: 'find',
       title: 'Find',
-      iconUrl: '/assets/icons/startMenu/search_file-0.png',
+      iconUrl: 'assets/icons/startMenu/search_file-0.png',
       action: () => {
         this.windowService.open({
           id: 'search',
@@ -93,7 +93,7 @@ export class TaskbarComponent {
     {
       id: 'help',
       title: 'Help',
-      iconUrl: '/assets/icons/startMenu/help_question_mark.png',
+      iconUrl: 'assets/icons/startMenu/help_question_mark.png',
       action: () => {
         this.windowService.open({
           id: 'help',
@@ -113,7 +113,7 @@ export class TaskbarComponent {
     {
       id: 'shutdown',
       title: 'Shut Down',
-      iconUrl: '/assets/icons/startMenu/shut_down_normal-0.png',
+      iconUrl: 'assets/icons/startMenu/shut_down_normal-0.png',
       action: () => {
         // Implement shutdown logic here
       },

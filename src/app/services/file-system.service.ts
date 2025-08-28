@@ -21,7 +21,7 @@ export class FileSystemService {
     type: FileSystemItemType.File,
     name: '.trash.8-23-1998-copy.bin',
     icon: '📄',
-    iconUrl: '/assets/icons/files/file.png'
+    iconUrl: 'assets/icons/files/file.png'
   }];
   //Create Entire Computer File System
   private fileSystem: FileSystemItem[] = [
@@ -30,7 +30,7 @@ export class FileSystemService {
       name: "3½ Floppy (A:)",
       type: FileSystemItemType.Drive,
       icon: '💾',
-      iconUrl: '/assets/icons/others/floppy_drive.png',
+      iconUrl: 'assets/icons/others/floppy_drive.png',
       freeSpace: 1.38,
       size: 1.44,
       spaceUnit: SizeUnit.MB,
@@ -41,7 +41,7 @@ export class FileSystemService {
       name: "Local Disk (C:)",
       type: FileSystemItemType.Drive,
       icon: '💿',
-      iconUrl: '/assets/icons/others/hard_disk_drive-32.png',
+      iconUrl: 'assets/icons/others/hard_disk_drive-32.png',
       freeSpace: 3.2,
       size: 10,
       spaceUnit: SizeUnit.GB,
@@ -51,21 +51,21 @@ export class FileSystemService {
           name: 'Documents and Settings',
           type: FileSystemItemType.Folder,
           icon: '📁',
-          iconUrl: '/assets/icons/files/folder.png',
+          iconUrl: 'assets/icons/files/folder.png',
           children: [
             {
               id: 'documents',
               name: 'Documents',
               type: FileSystemItemType.Folder,
               icon: '📁',
-              iconUrl: '/assets/icons/files/folder.png',
+              iconUrl: 'assets/icons/files/folder.png',
               children: [
                 {
                   id: 'resume',
                   name: 'Resume.pdf',
                   type: FileSystemItemType.File,
                   icon: '📄',
-                  iconUrl: '/assets/icons/files/document.png',
+                  iconUrl: 'assets/icons/files/document.png',
                   content: 'This is my resume content.',
                   action: () => {
                     this.windowService.open({
@@ -73,7 +73,7 @@ export class FileSystemService {
                       title: 'PDF Viewer - My CV',
                       contentComponent: Win98PdfViewerComponent,
                       contentInputs: {
-                        pdfSrc: '/assets/documents/MohammedBayatenaBackEndCV2025.pdf',
+                        pdfSrc: 'assets/documents/MohammedBayatenaBackEndCV2025.pdf',
                         windowClose: () => this.windowService.close('my-cv')
                       },
                       x: 250,
@@ -91,7 +91,7 @@ export class FileSystemService {
                   name: 'Cover Letter.docx',
                   type: FileSystemItemType.File,
                   icon: '📄',
-                  iconUrl: '/assets/icons/files/docx.png',
+                  iconUrl: 'assets/icons/files/docx.png',
                   content:
                     this.contentService.getFileContent('coverLetter') ??
                     'This is my cover letter content.',
@@ -103,21 +103,21 @@ export class FileSystemService {
               name: 'Pictures',
               type: FileSystemItemType.Folder,
               icon: '📁',
-              iconUrl: '/assets/icons/files/folder.png',
+              iconUrl: 'assets/icons/files/folder.png',
               children: [
                 {
                   id: 'miku',
                   name: 'HatsuneMiku.jpg',
                   type: FileSystemItemType.File,
                   icon: '🖼️',
-                  iconUrl: '/assets/icons/files/imageico.png',
+                  iconUrl: 'assets/icons/files/imageico.png',
                   action: () => {
                     this.windowService.open({
                       id: 'image-viewer-1',
                       title: 'Image Viewer',
                       contentComponent: Win98ImageViewerComponent,
                       contentInputs: {
-                        images: ['/assets/images/miku.png'],
+                        images: ['assets/images/miku.png'],
                         initialIndex: 0,
                         windowClose: () => this.windowService.close('image-viewer-1')
                       },
@@ -136,14 +136,14 @@ export class FileSystemService {
                   name: 'SomeImage.png',
                   type: FileSystemItemType.File,
                   icon: '🖼️',
-                  iconUrl: '/assets/icons/files/imageico.png',
+                  iconUrl: 'assets/icons/files/imageico.png',
                   action: () => {
                     this.windowService.open({
                       id: 'image-viewer-2',
                       title: 'Image Viewer',
                       contentComponent: Win98ImageViewerComponent,
                       contentInputs: {
-                        images: ['/assets/images/huh.jpg'],
+                        images: ['assets/images/huh.jpg'],
                         initialIndex: 0,
                         windowClose: () => this.windowService.close('image-viewer-2')
                       },
@@ -164,21 +164,21 @@ export class FileSystemService {
               name: 'Projects',
               type: FileSystemItemType.Folder,
               icon: '📁',
-              iconUrl: '/assets/icons/files/folder.png',
+              iconUrl: 'assets/icons/files/folder.png',
               children: [
                 {
                   id: 'project1',
                   name: 'Project 1',
                   type: FileSystemItemType.Folder,
                   icon: '📁',
-                  iconUrl: '/assets/icons/files/folder.png',
+                  iconUrl: 'assets/icons/files/folder.png',
                   children: [
                     {
                       id: 'readme',
                       name: 'README.md',
                       type: FileSystemItemType.File,
                       icon: '📄',
-                      iconUrl: '/assets/icons/files/file.png',
+                      iconUrl: 'assets/icons/files/file.png',
                       content: '# Project 1\n\nThis is project 1.',
                     },
                   ],
@@ -188,7 +188,7 @@ export class FileSystemService {
                   name: 'Project 2',
                   type: FileSystemItemType.Folder,
                   icon: '📁',
-                  iconUrl: '/assets/icons/files/folder.png',
+                  iconUrl: 'assets/icons/files/folder.png',
                 },
               ],
             },
@@ -197,7 +197,7 @@ export class FileSystemService {
               name: 'Music',
               type: FileSystemItemType.Folder,
               icon: '📁',
-              iconUrl: '/assets/icons/files/folder.png',
+              iconUrl: 'assets/icons/files/folder.png',
               children: [
                 {
                   id: 'song1',
@@ -213,7 +213,7 @@ export class FileSystemService {
                         playlist: [
                           {
                             name: 'BubbleGum.m4a',
-                            url: '/assets/audio/bubblegum.m4a',
+                            url: 'assets/audio/bubblegum.m4a',
                             type: 'audio',
                           },
                         ],
@@ -227,7 +227,7 @@ export class FileSystemService {
                       zIndex: 100,
                     });
                   },
-                  iconUrl: '/assets/icons/files/sound.png',
+                  iconUrl: 'assets/icons/files/sound.png',
                 },
                 {
                   id: 'song2',
@@ -243,7 +243,7 @@ export class FileSystemService {
                         playlist: [
                           {
                             name: 'Nuclear - Mike Oldfield.mp3',
-                            url: '/assets/audio/nuclear.mp3',
+                            url: 'assets/audio/nuclear.mp3',
                             type: 'audio',
                           },
                         ],
@@ -257,7 +257,7 @@ export class FileSystemService {
                       zIndex: 100,
                     });
                   },
-                  iconUrl: '/assets/icons/files/sound.png',
+                  iconUrl: 'assets/icons/files/sound.png',
                 },
               ],
             },
@@ -266,7 +266,7 @@ export class FileSystemService {
               name: 'Videos',
               type: FileSystemItemType.Folder,
               icon: '📁',
-              iconUrl: '/assets/icons/files/folder.png',
+              iconUrl: 'assets/icons/files/folder.png',
               children: [
                 {
                   id: 'video1',
@@ -282,7 +282,7 @@ export class FileSystemService {
                         playlist: [
                           {
                             name: 'Democracy.mp4',
-                            url: '/assets/videos/democracy.mp4',
+                            url: 'assets/videos/democracy.mp4',
                             type: 'video',
                           },
                         ],
@@ -296,7 +296,7 @@ export class FileSystemService {
                       zIndex: 100,
                     });
                   },
-                  iconUrl: '/assets/icons/files/media_player_file.png',
+                  iconUrl: 'assets/icons/files/media_player_file.png',
                 },
                 {
                   id: 'video2',
@@ -312,7 +312,7 @@ export class FileSystemService {
                         playlist: [
                           {
                             name: 'Lain.mp4',
-                            url: '/assets/videos/lain.mp4',
+                            url: 'assets/videos/lain.mp4',
                             type: 'video',
                           },
                         ],
@@ -326,7 +326,7 @@ export class FileSystemService {
                       zIndex: 100,
                     });
                   },
-                  iconUrl: '/assets/icons/files/media_player_file.png',
+                  iconUrl: 'assets/icons/files/media_player_file.png',
                 },
                 {
                   id: 'video3',
@@ -342,7 +342,7 @@ export class FileSystemService {
                         playlist: [
                           {
                             name: 'Iserlohn Fortress.mp4',
-                            url: '/assets/videos/spacefleet.mp4',
+                            url: 'assets/videos/spacefleet.mp4',
                             type: 'video',
                           },
                         ],
@@ -356,7 +356,7 @@ export class FileSystemService {
                       zIndex: 100,
                     });
                   },
-                  iconUrl: '/assets/icons/files/media_player_file.png',
+                  iconUrl: 'assets/icons/files/media_player_file.png',
                 },
               ],
             },]
@@ -366,21 +366,21 @@ export class FileSystemService {
           name: 'Windows',
           type: FileSystemItemType.Folder,
           icon: '📁',
-          iconUrl: '/assets/icons/files/folder.png',
+          iconUrl: 'assets/icons/files/folder.png',
           children: [
             {
               id: 'System',
               name: 'System',
               type: FileSystemItemType.Folder,
               icon: '📁',
-              iconUrl: '/assets/icons/files/folder.png',
+              iconUrl: 'assets/icons/files/folder.png',
             },
             {
               id: 'System32',
               name: 'System32',
               type: FileSystemItemType.Folder,
               icon: '📁',
-              iconUrl: '/assets/icons/files/folder.png',
+              iconUrl: 'assets/icons/files/folder.png',
             },
             {
               id: 'notepad.exe',
@@ -388,8 +388,8 @@ export class FileSystemService {
               type: FileSystemItemType.File,
               size: 54,
               spaceUnit: SizeUnit.KB,
-              icon: '⚙️', //TODO MAKE THIS NOTEPAD
-              // iconUrl: '/assets/icons/files/folder.png',
+              icon: '⚙️',
+              iconUrl: 'assets/icons/desktop/notepad.png',
             }
           ]
         },
@@ -398,7 +398,7 @@ export class FileSystemService {
           name: 'Program Files',
           type: FileSystemItemType.Folder,
           icon: '📁',
-          iconUrl: '/assets/icons/files/folder.png',
+          iconUrl: 'assets/icons/files/folder.png',
         },
       ]
     },
@@ -407,7 +407,7 @@ export class FileSystemService {
       name: "CD-ROM (E:)",
       type: FileSystemItemType.Cdrom,
       icon: '💿',
-      iconUrl: '/assets/icons/others/cd_drive.png',
+      iconUrl: 'assets/icons/others/cd_drive.png',
       freeSpace: 650,
       size: 650,
       spaceUnit: SizeUnit.MB,
@@ -418,7 +418,7 @@ export class FileSystemService {
       name: "Games (F:)",
       type: FileSystemItemType.Cdrom,
       icon: '💿',
-      iconUrl: '/assets/icons/others/sega_cd.png',
+      iconUrl: 'assets/icons/others/sega_cd.png',
       freeSpace: 210,
       size: 700,
       spaceUnit: SizeUnit.MB,
@@ -428,7 +428,7 @@ export class FileSystemService {
           name: 'Tekken 3.exe',
           type: FileSystemItemType.File,
           icon: '🎮',
-          iconUrl: '/assets/icons/games/tekken3.png',
+          iconUrl: 'assets/icons/games/tekken3.png',
           action: () => {
             this.windowService.open({
               id: 'gameContainer',
@@ -453,7 +453,7 @@ export class FileSystemService {
           name: 'Crash Bandicoot.exe',
           type: FileSystemItemType.File,
           icon: '🎮',
-          iconUrl: '/assets/icons/games/bandi.png',
+          iconUrl: 'assets/icons/games/bandi.png',
           action: () => {
             this.windowService.open({
               id: 'gameContainer',
@@ -478,7 +478,7 @@ export class FileSystemService {
           name: 'Sonic Classic Heroes.exe',
           type: FileSystemItemType.File,
           icon: '🎮',
-          iconUrl: '/assets/icons/games/sonic.png',
+          iconUrl: 'assets/icons/games/sonic.png',
           action: () => {
             this.windowService.open({
               id: 'gameContainer',
@@ -503,7 +503,7 @@ export class FileSystemService {
           name: 'Street Fighter II.exe',
           type: FileSystemItemType.File,
           icon: '🎮',
-          iconUrl: '/assets/icons/games/street-fighter.png',
+          iconUrl: 'assets/icons/games/street-fighter.png',
           action: () => {
             this.windowService.open({
               id: 'gameContainer',
@@ -556,7 +556,6 @@ export class FileSystemService {
   constructor() {
     this.buildFilesMetaDataMap()
     this.buildNavigationTree()
-    console.log(this.navigationSideBarItems)
     this.buildBSTFromFileSystem()
   }
 
@@ -615,7 +614,7 @@ export class FileSystemService {
         linkType: NavigationLinkType.Navigation,
         dstDirectoryId: 'root',
         name: 'My Computer',
-        iconUrl: '/assets/icons/desktop/computer_explorer.png',
+        iconUrl: 'assets/icons/desktop/computer_explorer.png',
         isExpanded: true,
         level: 0,
         children: visitItem(this.fileSystem, 0, [{id: 'root', name: 'My Computer'}]),
@@ -625,7 +624,7 @@ export class FileSystemService {
         linkType: NavigationLinkType.Navigation,
         dstDirectoryId: 'recycle-bin',
         name: 'Recycle Bin',
-        iconUrl: '/assets/icons/desktop/recycle_bin_full.png',
+        iconUrl: 'assets/icons/desktop/recycle_bin_full.png',
         isExpanded: false,
         level: 0,
         children: visitItem(this.recycleBinSystem, 0, [{id: 'recycle-bin', name: 'Recycle Bin'}]),

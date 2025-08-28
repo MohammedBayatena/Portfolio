@@ -21,7 +21,7 @@ export class DesktopIconComponent extends NoisyComponent {
 
   constructor() {
     super();
-    this.noiseUrl = '/assets/sounds/mouse-click.mp3';
+    this.noiseUrl = 'assets/sounds/mouse-click.mp3';
   }
 
   onClick(event: MouseEvent): void {

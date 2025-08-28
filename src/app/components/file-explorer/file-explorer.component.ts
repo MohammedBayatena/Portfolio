@@ -217,20 +217,20 @@ export class FileExplorerComponent implements OnInit {
     this.clearSelectedItems();
 
     if (folderId === this.myComputerDirectory) {
-      this.addressBarIcon = '/assets/icons/startMenu/computer_explorer-5.png'
+      this.addressBarIcon = 'assets/icons/startMenu/computer_explorer-5.png'
       this.currentFolderName = 'My Computer';
       this.isFolderTreeVisible = true;
       this.folderContents = this.fileSystemService.getFileSystem();
       this.breadcrumb = [{id: 'root', name: 'My Computer'}];
     } else if (folderId === this.recycleBinDirectory) {
-      this.addressBarIcon = '/assets/icons/desktop/recycle_bin_full.png'
+      this.addressBarIcon = 'assets/icons/desktop/recycle_bin_full.png'
       this.currentFolderName = 'Recycle Bin';
       this.folderContents = this.fileSystemService.getRecycleBinContent();
       this.breadcrumb = [{id: 'recycle-bin', name: 'Recycle Bin'}];
     } else {
       //Load Selected Item Content
       this.folderContents = this.fileSystemService.getFolderContents(folderId);
-      this.addressBarIcon = '/assets/icons/startMenu/computer_explorer-5.png'
+      this.addressBarIcon = 'assets/icons/startMenu/computer_explorer-5.png'
       // Update breadcrumb
       this.updateBreadcrumbPath(folderId);
     }

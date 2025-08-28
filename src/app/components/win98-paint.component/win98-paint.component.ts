@@ -159,9 +159,9 @@ export class Win98PaintComponent implements AfterViewInit {
     this.currentTool = tool;
 
     if (tool === 'pencil') {
-      this.canvas.nativeElement.style.cursor = 'url("/assets/icons/cursors/pencil-cursor.svg") 0 32, auto';
+      this.canvas.nativeElement.style.cursor = 'url("assets/icons/cursors/pencil-cursor.svg") 0 32, auto';
     } else if (tool === 'eraser') {
-      this.canvas.nativeElement.style.cursor = 'url("/assets/icons/cursors/eraser-cursor.svg") 0 0, auto';
+      this.canvas.nativeElement.style.cursor = 'url("assets/icons/cursors/eraser-cursor.svg") 0 0, auto';
     } else {
       this.canvas.nativeElement.style.cursor = 'crosshair';
     }
@@ -321,7 +321,7 @@ export class Win98PaintComponent implements AfterViewInit {
     // Set canvas size
     canvas.width = this.canvasContainer.nativeElement.offsetWidth * .85; // 85% of Parent Container
     canvas.height = this.canvasContainer.nativeElement.offsetHeight * .85; // 85% of Parent Container
-    this.canvas.nativeElement.style.cursor = 'url("/assets/icons/cursors/pencil-cursor.svg") 0 32, auto';
+    this.canvas.nativeElement.style.cursor = 'url("assets/icons/cursors/pencil-cursor.svg") 0 32, auto';
 
 
     // Create temporary canvas for shape drawing

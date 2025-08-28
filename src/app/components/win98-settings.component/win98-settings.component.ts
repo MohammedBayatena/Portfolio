@@ -64,8 +64,8 @@ export class Win98SettingsComponent {
   // Predefined wallpapers
   wallpapers = [
     {name: 'None', value: 'none'},
-    {name: 'Windows 98', value: '/assets/images/wallpapers/win98.jpg'},
-    {name: 'Clouds', value: '/assets/images/wallpapers/clouds.jpg'},
+    {name: 'Windows 98', value: 'assets/images/wallpapers/win98.jpg'},
+    {name: 'Clouds', value: 'assets/images/wallpapers/clouds.jpg'},
   ];
 
   // Screen savers
