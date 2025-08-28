@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Image.jpg",
+    "url": "/assets/images/huh.jpg",
+    "type": "image"
+  },
+  {
+    "name": "HatsuneMiku.png",
+    "url": "/assets/images/miku.png",
+    "type": "image"
+  },
+  {
+    "name": "HireMePlease.jpg",
+    "url": "/assets/images/pleasehireme.jpg",
+    "type": "image"
+  },
+  {
+    "name": "Democracy.mp4",
+    "url": "/assets/videos/democracy.mp4",
+    "type": "video"
+  },
+  {
+    "name": "Lain.mp4",
+    "url": "/assets/videos/lain.mp4",
+    "type": "video"
+  },
+  {
+    "name": "Iserlohn Fortress.mp4",
+    "url": "/assets/videos/spacefleet.mp4",
+    "type": "video"
+  },
+  {
+    "name": "BubbleGum.m4a",
+    "url": "/assets/audio/bubblegum.m4a",
+    "type": "audio"
+  },
+  {
+    "name": "Nuclear - Mike Oldfield.mp3",
+    "url": "/assets/audio/nuclear.mp3",
+    "type": "audio"
+  }
+]
