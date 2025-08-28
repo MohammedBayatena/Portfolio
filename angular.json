@@ -20,6 +20,7 @@
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
+            "outputPath": "docs",
             "assets": [
               {
                 "glob": "**/*",
@@ -88,6 +89,12 @@
             "styles": [
               "src/styles.scss"
             ]
+          }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "https://mohammedbayatena.github.io/Portfolio/"
           }
         }
       }
