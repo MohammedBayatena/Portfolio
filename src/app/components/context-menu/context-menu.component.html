@@ -1,0 +1,38 @@
+<!-- Context Menu -->
+@if (visible) {
+  <div
+    class="context-menu"
+    [style.left.px]="x"
+    [style.top.px]="y">
+    @for (model of contextMenuModel; track model.id) {
+      @if (model.divider) {
+        <div class="menu-divider"></div>
+      } @else {
+        <div
+          [class.disabled]="model.disabled"
+          class="menu-item" (click)="!model.disabled && executeAction(model)">
+          {{ model.label }}
+          @if (model.children && model.children.length > 0) {
+            <span class="arrow"> > </span>  <!-- Arrow indicator for nested items -->
+            <div class="submenu">
+              @for (child of model.children; track child.id) {
+                <div class="submenu-item" (click)="executeAction(child)">
+                  {{ child.label }}
+                </div>
+              }
+            </div>
+          }
+        </div>
+      }
+    }
+  </div>
+}
+<!--<div class="menu-item" (click)="hideContextMenu()">Explore</div>-->
+<!--<div class="menu-item" (click)="hideContextMenu()">Find</div>-->
+
+<!--<div class="menu-item" (click)="hideContextMenu()">New Folder</div>-->
+<!--<div class="menu-item" (click)="hideContextMenu()">Shortcut</div>-->
+<!--<div class="menu-divider"></div>-->
+<!--<div class="menu-item" (click)="hideContextMenu()">Delete</div>-->
+<!--<div class="menu-item" (click)="hideContextMenu()">Rename</div>-->
+<!--<div class="menu-item" (click)="hideContextMenu()">Properties</div>-->

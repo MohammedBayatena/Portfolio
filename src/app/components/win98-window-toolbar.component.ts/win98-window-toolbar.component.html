@@ -1,0 +1,37 @@
+<div class="toolbar">
+  @for (dropdown of model.dropdowns; track dropdown.id) {
+    <div
+      class="menu-item"
+      [class.active]="activeDropdown === dropdown.id"
+      (click)="toggleDropdown(dropdown.id)">
+      {{ dropdown.label }}
+      <span style="font-size: 8px">▼</span>
+
+      <!-- Dropdown Menu -->
+      @if (activeDropdown === dropdown.id) {
+        <div class="dropdown-menu">
+          @for (item of dropdown.items; track item.id) {
+            <div
+              class="dropdown-item"
+              [class.disabled]="item.disabled || item.divider"
+              (click)="executeAction(item)">
+
+              <!-- Divider -->
+              @if (item.divider) {
+                <div class="divider"></div>
+              } @else {
+                <!-- Regular menu item -->
+                <div class="menu-item-content">
+                  <div class="item-label">{{ item.label }}</div>
+                  @if (item.shortcut) {
+                    <div class="item-shortcut">{{ item.shortcut }}</div>
+                  }
+                </div>
+              }
+            </div>
+          }
+        </div>
+      }
+    </div>
+  }
+</div>

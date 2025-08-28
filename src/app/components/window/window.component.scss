@@ -1,0 +1,53 @@
+.window {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  min-width: fit-content;
+  min-height: fit-content;
+
+  .window-content {
+    flex: 1;
+    overflow: auto;
+    background-color: white;
+  }
+
+  .resize-grip {
+    width: 20px;
+    height: 20px;
+    position: absolute; /* Change to absolute positioning */
+    bottom: 0;
+    right: 0;
+  }
+
+  .resize-grip::before {
+    content: "";
+    position: absolute;
+    bottom: 3px;
+    right: 3px;
+    width: 2px;
+    height: 2px;
+    background: #808080; /* dark pixel */
+
+    box-shadow: /* --- First line (closest to bottom corner) --- */
+      0 0 #808080,
+      -4px 0px #808080,
+      -8px 0px #808080,
+        /* highlights */
+      -1px -1px #FFFFFF,
+      -5px -1px #ffffff,
+      -9px -1px #ffffff,
+        /* --- Second line --- */
+      0px -4px #808080,
+      -4px -4px #808080,
+        /* highlights */
+      -1px -5px #ffffff,
+      -5px -5px #ffffff,
+        /* --- Third line (top of triangle) --- */
+      0px -8px #808080,
+        /* highlight */
+      -1px -9px #ffffff
+  }
+
+
+}

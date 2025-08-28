@@ -1,0 +1,66 @@
+@if (clippyVisible) {
+  <div class="clippy-container"
+       #clippyContainer
+       [draggable]="'true'"
+       (mousedown)="onMouseDownDragStart($event)"
+       (mouseup)="onMouseUp()"
+       (click)="onClippyClick()"
+       (contextmenu)="onContextMenuClick($event)"
+  >
+    <div class="clippy">
+      <div class="paperclip">
+        @if (!doingATrick) {
+          <img [ngSrc]="clippyBodySrc" priority alt="Clippy" width="140" height="155">
+          <div class="eyes">
+            <div class="eye">
+              <div class="pupil" #leftPupil></div>
+            </div>
+            <div class="eye">
+              <div class="pupil" #rightPupil></div>
+            </div>
+          </div>
+        } @else {
+          <img [ngSrc]="clippyTrickSrc" priority alt="ClippyTrick" width="140" height="155">
+        }
+      </div>
+    </div>
+    <div class="speech-bubble" *ngIf="speechBubbleVisible">
+      <p>{{ currentPhrase }}</p>
+      <div class="options">
+        <button (click)="onYesClick()">Yes</button>
+        <button (click)="onNoClick()">No</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="window" [class.active]="windowVisible">
+    <div class="window-header">
+      <div class="window-title">
+        <div class="window-icon"></div>
+        Clippy Assistant
+      </div>
+      <div class="window-buttons">
+        <div class="control-btn" (click)="onMinimizeClick()">_</div>
+        <div class="control-btn" (click)="onCloseClick()">×</div>
+      </div>
+    </div>
+    <div class="window-content">
+      <p>Hello! I'm Clippy, your office assistant.</p>
+      <p>It looks like you're using a web browser. Would you like help with:</p>
+      <ul style="margin-left: 20px; margin-top: 10px;">
+        <li>Navigating websites</li>
+        <li>Finding information</li>
+        <li>Using bookmarks</li>
+      </ul>
+      <p style="margin-top: 10px;">Just click on one of the options above!</p>
+    </div>
+  </div>
+
+  <!-- Context Menu -->
+  <app-context-menu
+    [x]="contextMenuPosition.x"
+    [y]="contextMenuPosition.y"
+    [visible]="showContextMenu"
+    [contextMenuModel]="contextMenuModel"
+  ></app-context-menu>
+}

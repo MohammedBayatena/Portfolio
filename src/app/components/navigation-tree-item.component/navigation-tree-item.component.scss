@@ -1,0 +1,51 @@
+.tree-item {
+  padding: 2px 5px;
+  font-size: 11px;
+  cursor: pointer;
+  display: flex;
+  gap: 3px;
+
+  .subItemToggle {
+    width: 7px;
+    height: 7px;
+    padding: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    font-family: sans-serif;
+    border: 1px dotted grey;
+  }
+
+
+  .tree-icon {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 2px;
+  }
+
+  .subFoldersView {
+    display: flex;
+    flex-direction: column;
+
+    .mainItemTitle {
+      &:hover {
+        text-decoration: underline;
+        background-color: #E6E6FA;
+      }
+    }
+
+    .subFolderContainer {
+      display: flex;
+      flex-direction: column;
+      border-left: 1px dotted grey;
+
+      .subFolderItem {
+      }
+    }
+  }
+}
+
+

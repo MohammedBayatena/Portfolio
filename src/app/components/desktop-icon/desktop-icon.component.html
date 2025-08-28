@@ -1,0 +1,16 @@
+<div
+  class="desktop-icon"
+  [class.selected]="selected"
+  [style.left.px]="icon.x || 0"
+  [style.top.px]="icon.y || 0"
+  (click)="onClick($event)"
+  (dblclick)="onDoubleClick($event)"
+  (contextmenu)="onRightClick($event)"
+>
+  @if (icon.iconUrl) {
+  <img [ngSrc]="icon.iconUrl" width="32" height="32" alt="{{ icon.icon }}"/>
+  } @else {
+  <div class="icon">{{ icon.icon }}</div>
+  }
+  <div class="title">{{ icon.title }}</div>
+</div>

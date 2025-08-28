@@ -1,0 +1,318 @@
+<div class="win98-settings">
+  <!-- Main Content -->
+  <div class="settings-container">
+    <!-- Side Panel -->
+    <div class="side-panel">
+      <div
+        class="panel-item"
+        [class.active]="activePanel === 'appearance'"
+        (click)="setActivePanel('appearance')"
+      >
+        <div class="panel-icon">🖼️</div>
+        <div class="panel-text">Appearance</div>
+      </div>
+
+      <div
+        class="panel-item"
+        [class.active]="activePanel === 'screen-saver'"
+        (click)="setActivePanel('screen-saver')"
+      >
+        <div class="panel-icon">📺</div>
+        <div class="panel-text">Screen Saver</div>
+      </div>
+
+      <div
+        class="panel-item"
+        [class.active]="activePanel === 'settings'"
+        (click)="setActivePanel('settings')"
+      >
+        <div class="panel-icon">⚙️</div>
+        <div class="panel-text">Settings</div>
+      </div>
+
+      <div
+        class="panel-item"
+        [class.active]="activePanel === 'advanced'"
+        (click)="setActivePanel('advanced')"
+      >
+        <div class="panel-icon">🔧</div>
+        <div class="panel-text">Advanced</div>
+      </div>
+    </div>
+
+    <!-- Main Panel -->
+    <div class="main-panel">
+      @if (activePanel === 'appearance') {
+        <!-- Appearance Panel -->
+        <div class="panel-content">
+          <div class="panel-title">Appearance</div>
+
+          <div class="settings-section">
+            <div class="section-title">Wallpaper</div>
+            <div class="wallpaper-options">
+              <div class="wallpaper-list">
+                @for (wp of wallpapers; track wp.name) {
+                  <div
+                    class="wallpaper-item"
+                    [class.active]="wallpaper === wp.value"
+                    (click)="selectWallpaper(wp.value)"
+                  >
+                    {{ wp.name }}
+                  </div>
+                }
+              </div>
+
+              <div class="wallpaper-preview">
+                <div
+                  class="preview-container"
+                  [style.background-color]="
+                  wallpaper === 'none' ? backgroundColor : 'transparent'
+                "
+                >
+                  @if (wallpaper !== 'none') {
+                    <img
+                      [src]="wallpaper"
+                      alt="Wallpaper preview"
+                    />
+                  }
+
+                </div>
+
+                <div class="wallpaper-position">
+                  <label>Position:</label>
+                  <select [(ngModel)]="wallpaperPosition">
+                    <option value="center">Center</option>
+                    <option value="tile">Tile</option>
+                    <option value="stretch">Stretch</option>
+                  </select>
+                </div>
+
+                <div class="wallpaper-upload">
+                  <button class="control-btn" (click)="openFilePicker()">
+                    Browse...
+                  </button>
+                  <input
+                    type="file"
+                    #fileInput
+                    (change)="onFileSelected($event)"
+                    accept="image/*"
+                    style="display: none"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <div class="section-title">Background Color</div>
+            <div class="color-options">
+              <div class="color-palette">
+                @for (color of colorPalette; track $index) {
+                  <div
+                    class="color-swatch"
+                    [style.background-color]="color"
+                    [class.active]="backgroundColor === color"
+                    (click)="selectColor(color)"
+                  ></div>
+                }
+              </div>
+
+              <div class="custom-color">
+                <button class="control-btn" (click)="toggleCustomColorPicker()">
+                  Other...
+                </button>
+
+                @if (showCustomColorPicker) {
+                  <div class="custom-color-picker">
+                    <div
+                      class="color-preview"
+                      [style.background-color]="customColor"
+                    ></div>
+                    <input
+                      type="color"
+                      [(ngModel)]="customColor"
+                      (change)="selectColor(customColor)"
+                    />
+                    <button class="control-btn" (click)="selectColor(customColor)">
+                      OK
+                    </button>
+                    <button
+                      class="control-btn"
+                      (click)="showCustomColorPicker = false"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                }
+
+              </div>
+            </div>
+          </div>
+        </div>
+      } @else if (activePanel === 'screen-saver') {
+        <!-- Screen Saver Panel -->
+        <div class="panel-content">
+          <div class="panel-title">Screen Saver</div>
+
+          <div class="settings-section">
+            <div class="section-title">Screen Saver</div>
+            <div class="screen-saver-options">
+              <div class="screen-saver-list">
+                <select
+                  [(ngModel)]="screenSaver"
+                  class="select-control">
+                  @for (ss of screenSavers; track ss.name) {
+                    <option [value]="ss.value">
+                      {{ ss.name }}
+                    </option>
+                  }
+                </select>
+              </div>
+
+              <div class="screen-saver-settings">
+                <div class="setting-row">
+                  <label>Wait:</label>
+                  <input
+                    type="number"
+                    [(ngModel)]="screenSaverTimeout"
+                    min="1"
+                    max="120"
+                    class="number-input"
+                  />
+                  <span>minutes</span>
+                </div>
+
+                <div class="setting-row">
+                  <button (click)="onScreenSaverPreviewClicked()" class="control-btn">Preview</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <div class="section-title">Energy saving features of monitor</div>
+            <div class="energy-settings">
+              <div class="checkbox-row">
+                <input type="checkbox" id="power-save"/>
+                <label for="power-save">Allow monitor power saving</label>
+              </div>
+
+              <div class="setting-row">
+                <label>Turn off monitor after:</label>
+                <select class="select-control">
+                  <option>After 15 minutes</option>
+                  <option>After 30 minutes</option>
+                  <option>After 1 hour</option>
+                  <option>Never</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      } @else if (activePanel === 'settings') {
+        <!-- Settings Panel -->
+        <div class="panel-content">
+          <div class="panel-title">Settings</div>
+
+          <div class="settings-section">
+            <div class="section-title">Display area</div>
+            <div class="display-settings">
+              <div class="display-preview">
+                <div class="monitor-preview">
+                  <div
+                    class="screen"
+                    [style.width.px]="parseInt(resolution.split('x')[0]) / 16"
+                    [style.height.px]="parseInt(resolution.split('x')[1]) / 16"
+                  ></div>
+                </div>
+              </div>
+
+              <div class="display-options">
+                <div class="setting-row">
+                  <label>Screen area:</label>
+                  <select [(ngModel)]="resolution" class="select-control">
+                    @for (res of resolutions; track $index) {
+                      <option [value]="res">
+                        {{ res }}
+                      </option>
+                    }
+                  </select>
+                </div>
+
+                <div class="setting-row">
+                  <label>Colors:</label>
+                  <select [(ngModel)]="colorDepth" class="select-control">
+                    @for (depth of colorDepths; track $index) {
+                      <option [value]="depth">
+                        {{ depth }}
+                      </option>
+                    }
+                  </select>
+                </div>
+
+                <div class="setting-row">
+                  <label>Refresh frequency:</label>
+                  <select [(ngModel)]="refreshRate" class="select-control">
+                    @for (rate of refreshRates; track $index) {
+                      <option [value]="rate">
+                        {{ rate }}
+                      </option>
+                    }
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <div class="section-title">Advanced display properties</div>
+            <div class="advanced-settings">
+              <button class="control-btn">Adapter</button>
+              <button class="control-btn">Graphics</button>
+            </div>
+          </div>
+        </div>
+      } @else if (activePanel === 'advanced') {
+        <!-- Advanced Panel -->
+        <div class="panel-content">
+          <div class="panel-title">Advanced</div>
+          <div class="settings-section">
+            <div class="section-title">Performance</div>
+            <div class="performance-settings">
+              <div class="slider-container">
+                <label>Hardware acceleration:</label>
+                <div class="slider">
+                  <div class="slider-track">
+                    <div class="slider-thumb" style="left: 75%"></div>
+                  </div>
+                </div>
+                <div class="slider-labels">
+                  <span>None</span>
+                  <span>Full</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <div class="section-title">Troubleshooting</div>
+            <div class="troubleshooting-settings">
+              <div class="checkbox-row">
+                <input type="checkbox" id="640x480"/>
+                <label for="640x480">Run in 640x480 screen resolution</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="action-buttons">
+    <button class="control-btn" (click)="applySettings()">Apply</button>
+    <button class="control-btn" (click)="onOkClicked()" style="font-weight: bold">
+      OK
+    </button>
+  </div>
+</div>

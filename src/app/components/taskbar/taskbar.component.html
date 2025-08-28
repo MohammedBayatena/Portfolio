@@ -1,0 +1,41 @@
+<div class="taskbar">
+  <button class="start-button" (click)="onStartButtonClick()">
+    <img ngSrc="/assets/icons/startMenu/windows.png" alt="" [height]="12" [width]="12"/>
+    Start
+  </button>
+  <div class="taskbar-items">
+    @for (window of windows; track window.id) {
+      <div
+        class="taskbar-item"
+        [class.active]="!window.minimized"
+        (click)="onWindowClick(window)"
+      >
+        {{ window.title }}
+      </div>
+    }
+  </div>
+  <div class="system-tray">
+    <div class="clock">{{ currentTime }}</div>
+  </div>
+</div>
+
+@if (startMenu.visible) {
+  <div
+    class="start-menu-container"
+    [style.left.px]="startMenu.x"
+    [style.bottom.px]="startMenu.y"
+    [style.width.%]="startMenu.width"
+    [style.height.%]="startMenu.height"
+  >
+    <div class="vertical-line"></div>
+    <div class="start-menu">
+      @for (item of startMenuItems; track item.id) {
+        <start-menu-item
+          class="start-menu-item-container"
+          [item]="item"
+          (itemClick)="onStartMenuItemClick(item)"
+        ></start-menu-item>
+      }
+    </div>
+  </div>
+}

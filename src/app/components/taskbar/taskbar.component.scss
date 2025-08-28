@@ -1,0 +1,101 @@
+.taskbar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 24px;
+  background-color: #c0c0c0;
+  border-top: 2px solid #fff;
+  display: flex;
+  align-items: center;
+
+  .start-button {
+    height: 93%;
+    padding: 5px 10px;
+    margin-right: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .taskbar-items {
+    flex: 1;
+    display: flex;
+    overflow-x: auto;
+    height: 22px;
+
+    .taskbar-item {
+      display: flex;
+      align-items: center;
+      padding: 5px 10px;
+      margin-right: 2px;
+      cursor: pointer;
+      user-select: none;
+      white-space: nowrap;
+      box-shadow: inset 2px 2px #ebeaea, inset 1px 1px #fffefe,
+      inset 2px 2px #0c0c0c, inset -3px -3px grey, inset 3px 3px #dfdfdf;
+
+      &.active {
+        font-weight: bold;
+        float: left;
+        padding: 0 10px 0 6px;
+        border-top: 1px solid #000;
+        border-left: 1px solid #000;
+        box-shadow: inset 1px 1px grey;
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAG0lEQVQYV2M8cODAf3t7ewbG/////z948CADAFuqCj64BtLKAAAAAElFTkSuQmCC);
+      }
+    }
+  }
+}
+
+.start-menu {
+  min-width: fit-content;
+  padding: 5px;
+  cursor: pointer;
+
+  .start-menu-item-container {
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    font-size: 14px;
+    border: 1px solid transparent;
+  }
+
+  .start-menu-item-container:hover {
+    border: 1px dotted black;
+    background-color: #000080;
+    color: white;
+  }
+}
+
+.system-tray {
+  padding: 0 10px;
+
+  .clock {
+    font-size: 12px;
+  }
+}
+
+.vertical-line {
+  width: 20px; /* Adjust for desired thickness */
+  background-color: #000080; /* Adjust for desired color */
+  min-height: 100%;
+}
+
+.start-menu-container {
+  position: absolute;
+  display: flex;
+  background-color: #c0c0c0;
+  border: 2px solid black;
+}
+
+.start-bar-window {
+  float: left;
+  padding: 0 10px 0 6px;
+  border-top: 1px solid #000;
+  border-left: 1px solid #000;
+  box-shadow: inset 1px 1px grey;
+  background-image: url('/assets/icons/startMenu/taskbaractive.png');
+}

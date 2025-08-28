@@ -1,0 +1,69 @@
+<!--@if (!instance.minimized) {-->
+<div
+  class="window window-active"
+  [style.left.px]="instance.x"
+  [style.top.px]="instance.y"
+  [style.width.px]="instance.width"
+  [style.height.px]="instance.height"
+  [style.z-index]="instance.zIndex"
+  [style.visibility]="instance.minimized ? 'hidden' : 'visible'"
+  (click)="onWindowClick()"
+>
+  <div class="title-bar movable" #titleBar (mousedown)="onTitleBarMouseDown($event)">
+    <div class="title-bar-text">{{ instance.title }}</div>
+    <div class="title-bar-controls">
+      <button
+        class="minimize-btn"
+        aria-label="Minimize"
+        (click)="onMinimizeClick()"
+      ></button>
+      <button
+        class="close-btn"
+        aria-label="Close"
+        (click)="onCloseClick()"
+      ></button>
+    </div>
+  </div>
+
+  <div class="window-content" #windowContent>
+    <ng-container
+      *ngComponentOutlet="instance.contentComponent; inputs: overrideChildInputs(instance)"
+    ></ng-container>
+    <div class="resize-grip"></div>
+  </div>
+
+  <!-- Resize handles -->
+  <div
+    class="resize-handle resize-n"
+    (mousedown)="onResizeMouseDown($event, 'n')"
+  ></div>
+  <div
+    class="resize-handle resize-e"
+    (mousedown)="onResizeMouseDown($event, 'e')"
+  ></div>
+  <div
+    class="resize-handle resize-s"
+    (mousedown)="onResizeMouseDown($event, 's')"
+  ></div>
+  <div
+    class="resize-handle resize-w"
+    (mousedown)="onResizeMouseDown($event, 'w')"
+  ></div>
+  <div
+    class="resize-handle resize-ne"
+    (mousedown)="onResizeMouseDown($event, 'ne')"
+  ></div>
+  <div
+    class="resize-handle resize-se"
+    (mousedown)="onResizeMouseDown($event, 'se')"
+  ></div>
+  <div
+    class="resize-handle resize-sw"
+    (mousedown)="onResizeMouseDown($event, 'sw')"
+  ></div>
+  <div
+    class="resize-handle resize-nw"
+    (mousedown)="onResizeMouseDown($event, 'nw')"
+  ></div>
+</div>
+

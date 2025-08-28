@@ -1,0 +1,16 @@
+.dialog {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 800px;
+  max-height: 600px;
+
+  .dialog-content {
+    flex: 1;
+    overflow: hidden;
+    background-color: white;
+  }
+}
+
+

@@ -1,0 +1,37 @@
+@if (isVisible && options) {
+  <div class="dialog-overlay" (click)="onNo()">
+    <div class="dialog-window" (click)="$event.stopPropagation()">
+      <!-- Title Bar -->
+      <div class="title-bar">
+        <div class="title-bar-text">{{ options.title }}</div>
+      </div>
+
+      <!-- Dialog Content -->
+      <div class="dialog-content">
+        <div class="dialog-icon">{{ getIcon() }}</div>
+        <div class="dialog-message">{{ options.message }}</div>
+      </div>
+
+      <!-- Dialog Buttons -->
+      <div class="dialog-buttons">
+        @if (options.type === DialogType.CONFIRMATION) {
+          <!-- Confirmation Dialog -->
+          <div class="button-group">
+            <button class="control-btn" (click)="onConfirm()">{{ options.confirmText || 'Yes' }}</button>
+            <button class="control-btn" (click)="onNo()">{{ options.cancelText || 'No' }}</button>
+          </div>
+        } @else if (options.type === DialogType.INFORMATION) {
+          <!-- Information Dialog -->
+          <div class="button-group">
+            <button class="control-btn" (click)="onOk()">{{ options.okText || 'OK' }}</button>
+          </div>
+        } @else if (options.type === DialogType.ERROR) {
+          <!-- Error Dialog -->
+          <div class="button-group">
+            <button class="control-btn" (click)="onOk()">{{ options.okText || 'OK' }}</button>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+}

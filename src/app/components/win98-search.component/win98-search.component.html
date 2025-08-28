@@ -1,0 +1,99 @@
+<div class="win98-search">
+  <!-- Search Panel -->
+  <div class="search-panel">
+    <div class="search-section">
+      <div class="section-title">Search for files or folders named:</div>
+      <div class="search-input">
+        <input type="text" [(ngModel)]="searchTerm" placeholder="Enter filename"/>
+      </div>
+    </div>
+
+    <div class="search-section">
+      <div class="section-title">Look in:</div>
+      <div class="look-in">
+        <select [(ngModel)]="lookIn" class="select-control">
+          <option *ngFor="let option of lookInOptions" [value]="option.value">
+            {{ option.label }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="search-options">
+      <div class="options-title">Search Options:</div>
+      <div class="checkbox-group">
+        <input id="searchSub" [disabled]="lookIn === 'all'" type="checkbox" [(ngModel)]="searchSubfolders"/>
+        <label for="searchSub" class="checkbox-label">Search subfolders</label>
+        <input id="sensitive" type="checkbox" [(ngModel)]="caseSensitive"/>
+        <label for="sensitive" class="checkbox-label">Case sensitive</label>
+        <input id="exactMatch" type="checkbox" [(ngModel)]="exactMatch"/>
+        <label for="exactMatch" class="checkbox-label">Exact Match</label>
+      </div>
+    </div>
+
+    <div class="search-actions">
+      <button class="control-btn primary-btn" (click)="startSearch()" [disabled]="isSearching">
+        Search
+      </button>
+      <button class="control-btn" (click)="stopSearch()" [disabled]="!isSearching">
+        Stop
+      </button>
+    </div>
+  </div>
+
+  <!-- Results Panel -->
+  <div class="results-panel">
+    <div class="results-header">
+      <div class="results-title">Results</div>
+      <div class="results-status">{{ searchStatus }}</div>
+      <div class="results-count" *ngIf="foundFiles > 0">
+        Found {{ foundFiles }} file(s)
+      </div>
+    </div>
+
+    <div class="results-list">
+      <div *ngIf="searchResults.length === 0 && !isSearching" class="no-results">
+        No files found
+      </div>
+
+      <div *ngIf="isSearching" class="searching">
+        <div class="searching-animation">Searching...</div>
+      </div>
+
+      <div *ngFor="let result of searchResults" class="result-item" (dblclick)="openFile(result)">
+        <div class="result-icon">
+          {{ result.isFolder ? '📁' : getFileIcon(result.type) }}
+        </div>
+        <div class="result-details">
+          <div class="result-name">{{ result.name }}</div>
+          <div class="result-path">{{ result.path }}</div>
+        </div>
+        <div class="result-meta">
+          <div class="result-size">{{ result.size }}</div>
+          <div class="result-modified">{{ result.modified }}</div>
+        </div>
+        <div class="result-actions">
+
+          @if (result.isFolder) {
+            <button class="icon-btn" (click)="openContainingFolder(result)" title="Open Containing Folder">
+              📂
+            </button>
+          } @else {
+            <button class="icon-btn" (click)="openFile(result)" title="Open">
+              ▶
+            </button>
+            <button class="icon-btn" (click)="openContainingFolder(result)" title="Open Containing Folder">
+              📂
+            </button>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Status Bar -->
+  <div class="status-bar">
+    <div class="status-item">Ready</div>
+    <div class="status-item" *ngIf="foundFiles > 0">{{ foundFiles }} objects</div>
+  </div>
+</div>

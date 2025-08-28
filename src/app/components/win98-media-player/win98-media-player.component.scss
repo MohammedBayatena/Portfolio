@@ -1,0 +1,177 @@
+$border-color-light: #ffffff;
+$border-color-dark: #808080;
+$bg-light: #c0c0c0;
+$bg-dark: #000080;
+$bg-black: #000;
+$font-family: "MS Sans Serif", sans-serif;
+$font-size-small: 10px;
+$font-size-medium: 11px;
+$white: #fff;
+
+.win98-player {
+  font-family: $font-family;
+  font-size: $font-size-medium;
+  color: #000;
+  height: 100%;
+  width: 100%; // Ensure the player takes up the full available space
+
+  .media-display {
+    // height: 20%;
+    background: $bg-black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $white;
+    position: relative;
+
+    // Use percentage of the player's width and height
+    width: 100%; // For example, 80% of the player's width
+    height: 60%; // 60% of the player's height
+
+    audio,
+    video {
+      width: 100%; // Set to 100% of the parent (.media-display) element's width
+      height: 100%; // Set to 100% of the parent (.media-display) element's height
+      max-width: 100%; // Ensures it doesn't exceed the parent's width
+      max-height: 100%; // Ensures it doesn't exceed the parent's height
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .audio-placeholder {
+      text-align: center;
+      color: $white;
+    }
+
+    .audio-icon {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .progress-container,
+  .controls {
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    background: $bg-light;
+    border-top: 1px solid $border-color-dark;
+  }
+
+  .time-display {
+    width: 40px;
+    text-align: center;
+    font-size: $font-size-small;
+  }
+
+  .progress-bar {
+    flex: 1;
+    height: 10px;
+    background: $white;
+    border: 1px solid;
+    border-color: $border-color-dark $white $white $border-color-dark;
+    margin: 0 4px;
+    cursor: pointer;
+    position: relative;
+
+    .progress-track {
+      height: 100%;
+      background: $bg-dark;
+    }
+  }
+
+  .control-btn {
+    width: 24px;
+    height: 22px;
+    margin-right: 2px;
+    background: $bg-light;
+    border: 1px solid;
+    border-color: $border-color-light $border-color-dark $border-color-dark
+      $border-color-light;
+    font-size: $font-size-small;
+    cursor: pointer;
+
+    &:active {
+      border-color: $border-color-dark $white $white $border-color-dark;
+      background: #a0a0a0;
+    }
+  }
+
+  .volume-container {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+
+  .volume-bar {
+    width: 60px;
+    height: 10px;
+    background: $white;
+    border: 1px solid;
+    border-color: $border-color-dark $white $white $border-color-dark;
+    margin-left: 4px;
+    cursor: pointer;
+
+    .volume-track {
+      height: 100%;
+      background: $bg-dark;
+    }
+  }
+
+  .playlist-container {
+    border-top: 1px solid $border-color-dark;
+
+    .playlist-header {
+      background: $bg-light;
+      padding: 2px 4px;
+      border-bottom: 1px solid $border-color-dark;
+      font-weight: bold;
+    }
+
+    .playlist {
+      max-height: 120px;
+      overflow-y: auto;
+
+      .playlist-item {
+        padding: 2px 4px;
+        cursor: pointer;
+        border-bottom: 1px solid #e0e0e0;
+
+        &:hover {
+          background: #e0e0e0;
+        }
+
+        &.active {
+          background: $bg-dark;
+          color: $white;
+        }
+      }
+
+      &::-webkit-scrollbar {
+        width: 14px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: $bg-light;
+        border: 1px solid $border-color-dark;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: $bg-light;
+        border: 1px solid;
+        border-color: $border-color-light $border-color-dark $border-color-dark
+          $border-color-light;
+      }
+
+      &::-webkit-scrollbar-button {
+        background: $bg-light;
+        border: 1px solid;
+        border-color: $border-color-light $border-color-dark $border-color-dark
+          $border-color-light;
+        height: 14px;
+      }
+    }
+  }
+}

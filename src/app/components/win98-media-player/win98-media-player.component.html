@@ -1,0 +1,66 @@
+<div class="win98-player">
+  <!-- Media Display -->
+  <div class="media-display">
+    <video
+      #videoElement
+      [class.hidden]="getTrack(currentTrack)?.type !== 'video'"
+      style="width: 100%; height: 400px;"
+    ></video>
+
+    <audio
+      #audioElement
+      [class.hidden]="getTrack(currentTrack)?.type !== 'audio'"
+    ></audio>
+
+    @if (getTrack(currentTrack)?.type === 'audio') {
+      <div class="audio-placeholder">
+        <div class="audio-icon">♪</div>
+        <p>{{ getTrack(currentTrack)?.name }}</p>
+      </div>
+    }
+  </div>
+
+  <!-- Progress Bar -->
+  <div class="progress-container">
+    <div class="time-display">{{ formatTime(currentTime) }}</div>
+    <div class="progress-bar" (click)="seek($event)">
+      <div class="progress-track" [style.width.%]="trackPosition"></div>
+    </div>
+    <div class="time-display">{{ formatTime(duration) }}</div>
+  </div>
+
+  <!-- Control Buttons -->
+  <div class="controls">
+    <button (click)="prevTrack()" class="control-btn">◀◀</button>
+    <button (click)="togglePlayPause()" class="control-btn">
+      {{ isPlaying ? "❚❚" : "▶" }}
+    </button>
+    <button (click)="stop()" class="control-btn">■</button>
+    <button (click)="nextTrack()" class="control-btn">▶▶</button>
+
+    <!-- Volume Control -->
+    <div class="volume-container">
+      <button (click)="toggleMute()" class="control-btn">
+        {{ isMuted ? "🔇" : "🔊" }}
+      </button>
+      <div class="volume-bar" (click)="adjustVolume($event)">
+        <div class="volume-track" [style.width.%]="volumePosition"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Playlist -->
+  <div class="playlist-container">
+    <div class="playlist-header">Playlist</div>
+    <div class="playlist">
+      @for (track of playlist; track track.url; let i = $index) {
+        <div
+          class="playlist-item"
+          [class.active]="i === currentTrack"
+          (click)="selectTrack(i)">
+          {{ track.name }}
+        </div>
+      }
+    </div>
+  </div>
+</div>

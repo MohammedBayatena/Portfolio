@@ -1,0 +1,75 @@
+// Context Menu
+.context-menu {
+  position: fixed;
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  box-shadow: 1px 1px 0 0 #000;
+  z-index: 1000;
+  min-width: 150px;
+
+  .menu-item {
+    padding: 4px 8px;
+    cursor: pointer;
+    position: relative; // For positioning submenus
+    display: flex; // Use flexbox for layout
+    justify-content: space-between; // Space out label and arrow
+    align-items: center; // Vertically align the text and arrow
+
+    // Add the arrow icon for nested items
+    .arrow {
+      margin-left: 8px; // Space between the label and the arrow
+    }
+
+    &:hover {
+      background: #000080;
+      color: white;
+    }
+
+    // Nested submenu
+    .submenu {
+      position: absolute;
+      left: 100%; // Place submenu to the right of the parent
+      top: 0;
+      display: none; // Hidden by default
+      background: #c0c0c0;
+      min-width: 150px;
+      border: 2px solid;
+      border-color: #ffffff #808080 #808080 #ffffff;
+      box-shadow: 1px 1px 0 0 #000;
+      color: black;
+
+      .submenu-item {
+        padding: 4px 8px;
+        cursor: pointer;
+
+        &:hover {
+          background: #000080;
+          color: white;
+        }
+      }
+    }
+
+    // Show submenu on hover
+    &:hover .submenu {
+      display: block;
+    }
+  }
+
+  .disabled {
+    color: rgba(43, 43, 43, 0.35); // Gray text for disabled
+    cursor: not-allowed; // Change cursor to indicate it's not clickable
+    pointer-events: none; // Disable hover and click events
+
+    &:hover {
+      background: #f0f0f0; // Prevent hover background change
+      color: #a9a9a9; // Prevent hover color change
+    }
+  }
+
+  .menu-divider {
+    height: 1px;
+    background: #808080;
+    margin: 2px 4px;
+  }
+}

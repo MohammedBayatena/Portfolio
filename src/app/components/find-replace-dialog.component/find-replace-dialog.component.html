@@ -1,0 +1,60 @@
+<div class="dialog-window">
+  <!-- Dialog Content -->
+  <div class="dialog-content">
+    <div class="form-group">
+      <label for="findText">Find what:</label>
+      <input
+        id="findText"
+        #findInput
+        type="text"
+        [(ngModel)]="findText"
+        (keyup.enter)="onFind()"
+        class="text-input"/>
+    </div>
+
+
+    @if (mode === 'replace') {
+      <div class="form-group">
+        <label for="replaceText">Replace with:</label>
+        <input
+          id="replaceText"
+          type="text"
+          [(ngModel)]="replaceText"
+          (keyup.enter)="onReplace()"
+          class="text-input"/>
+      </div>
+    }
+
+    <div class="options-group">
+      <div class="checkbox-group">
+        <input
+          id="matchCase"
+          type="checkbox"
+          [(ngModel)]="matchCase"/>
+        <label for="matchCase">Match case</label>
+      </div>
+
+      <div class="checkbox-group">
+        <input
+          id="wholeWord"
+          type="checkbox"
+          [(ngModel)]="wholeWord"/>
+        <label for="wholeWord">Match whole word only</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dialog Buttons -->
+  <div class="dialog-buttons">
+    <div class="button-group">
+      <button class="control-btn" (click)="onFind()">Find Next</button>
+
+      @if (mode === 'replace') {
+        <button class="control-btn" (click)="onReplace()">Replace</button>
+        <button class="control-btn" (click)="onReplaceAll()">Replace All</button>
+      }
+
+      <button class="control-btn" (click)="onCancel()">Cancel</button>
+    </div>
+  </div>
+</div>

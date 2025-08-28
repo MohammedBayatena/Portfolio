@@ -1,0 +1,118 @@
+<div class="paint-window">
+  <!-- Toolbar -->
+  <app-win98-toolbar [model]="toolbarModel"></app-win98-toolbar>
+
+  <!-- Tools Panel -->
+  <div class="tools-panel">
+    <div class="tool-section">
+      <div class="tool-title">Tools</div>
+      <div class="tools-grid">
+        <div class="tool-item"
+             [class.active]="currentTool === 'pencil'"
+             (click)="selectTool('pencil')"
+             title="Pencil">
+          <img ngSrc="/assets/icons/paint/pencil.svg" width="24" height="24" alt="Pencil Icon"/>
+        </div>
+        <div class="tool-item"
+             [class.active]="currentTool === 'eraser'"
+             (click)="selectTool('eraser')"
+             title="Eraser">
+          <img ngSrc="/assets/icons/paint/eraser.svg" width="24" height="24" alt="Eraser Icon"/>
+        </div>
+
+        <div class="tool-item"
+             [class.active]="currentTool === 'rectangle'"
+             (click)="selectTool('rectangle')"
+             title="Rectangle">
+          <!-- Windows 98–style rectangle SVG -->
+          <svg width="24" height="24" viewBox="0 0 24 24">
+            <rect x="4" y="4" width="16" height="16" fill="none" stroke="#000"/>
+          </svg>
+        </div>
+
+        <div class="tool-item"
+             [class.active]="currentTool === 'circle'"
+             (click)="selectTool('circle')"
+             title="Circle">
+          <!-- Windows 98–style circle SVG -->
+          <svg width="24" height="24" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="8" fill="none" stroke="#000"/>
+          </svg>
+        </div>
+
+        <div class="tool-item"
+             [class.active]="currentTool === 'line'"
+             (click)="selectTool('line')"
+             title="Line">
+          <!-- Windows 98–style line SVG -->
+          <svg width="24" height="24" viewBox="0 0 24 24">
+            <line x1="4" y1="20" x2="20" y2="4" stroke="#000"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-section">
+      <div class="tool-title">Colors</div>
+      <div class="color-palette">
+        @for (color of colorPalette; track $index) {
+          <div
+            class="color-swatch"
+            [style.background-color]="color"
+            [class.active]="currentColor === color"
+            (click)="selectColor(color)">
+          </div>
+        }
+      </div>
+      <div class="custom-color">
+        <input type="color" #colorPicker [value]="currentColor" (change)="selectColor(colorPicker.value)"/>
+      </div>
+    </div>
+
+    <div class="tool-section">
+      <div class="tool-title">Line Width</div>
+      <div class="line-widths">
+        @for (width of [1, 3, 5, 8]; track $index) {
+          <div
+            class="line-width-item"
+            [class.active]="lineWidth === width"
+            (click)="setLineWidth(width)">
+            <div class="line-preview" [style.height.px]="width"></div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="tool-section">
+      <div class="tool-title">Zoom</div>
+      <div class="zoom-controls">
+        <div class="zoom-item" (click)="handleZoomOut()" title="Zoom Out">➖</div>
+        <div class="zoom-level">{{ Math.round(zoomLevel * 100) }}%</div>
+        <div class="zoom-item" (click)="handleZoomIn()" title="Zoom In">➕</div>
+        <div class="zoom-item" (click)="handleNormalSize()" title="Normal Size">1:1</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Canvas Area -->
+  <div #canvasContainer class="canvas-container">
+    <canvas
+      #canvas
+      class="paint-canvas"
+      (mousedown)="onMouseDown($event)"
+      (mousemove)="onMouseMove($event)"
+      (mouseup)="onMouseUp()"
+      (mouseleave)="onMouseUp()"
+      (resize)="onResize()">
+    </canvas>
+  </div>
+
+  <!-- Status Bar -->
+  <div class="status-bar">
+    <div class="status-item">Ready</div>
+    <div class="status-item">{{ this.title }}</div>
+    <div class="status-item">{{ currentTool }}</div>
+    <div class="status-item">{{ currentColor }}</div>
+    <div class="status-item">{{ Math.round(zoomLevel * 100) }}%</div>
+  </div>
+</div>

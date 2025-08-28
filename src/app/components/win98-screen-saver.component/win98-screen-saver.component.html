@@ -1,0 +1,37 @@
+@if (isActiveScreenSaver) {
+  <div class="screen-saver-overlay" (click)="deactivateScreenSaver()">
+    <div class="screen-saver-content">
+      <!-- Windows 98 Logo -->
+      <div class="win98-logo">
+        <div class="logo-flag">
+          <div class="flag-red"></div>
+          <div class="flag-green"></div>
+          <div class="flag-blue"></div>
+          <div class="flag-yellow"></div>
+        </div>
+        <div class="logo-text">Windows 98</div>
+      </div>
+
+      <!-- Current Time -->
+      <div class="current-time">
+        {{ currentTime$ | async | date:'HH:mm:ss' }}
+      </div>
+
+      <!-- Current Date -->
+      <div class="current-date">
+        {{ currentTime$ | async | date:'EEEE, MMMM d, yyyy' }}
+      </div>
+
+      <!-- Moving text (like classic screen savers) -->
+      <div class="moving-text-container">
+        <div class="moving-text">
+          Windows 98 Screen Saver - Move mouse or press any key to exit
+        </div>
+      </div>
+
+      <!-- Canvas for pipes animation -->
+      <canvas #canvas class="pipes-canvas"></canvas>
+    </div>
+  </div>
+}
+

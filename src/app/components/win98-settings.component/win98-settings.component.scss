@@ -1,0 +1,340 @@
+.win98-settings {
+  height: 100%;
+  width: 100%;
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  font-family: "MS Sans Serif", sans-serif;
+  font-size: 11px;
+  color: #000;
+  box-shadow: 1px 1px 0 0 #000;
+  display: flex;
+  flex-direction: column;
+}
+
+.title-bar {
+  background: #000080;
+  color: white;
+  padding: 2px 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+.window-controls button {
+  background: #c0c0c0;
+  border: 1px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  width: 16px;
+  height: 14px;
+  margin-left: 2px;
+  font-size: 10px;
+}
+
+.settings-container {
+  display: flex;
+  flex: 1;
+}
+
+.side-panel {
+  width: 120px;
+  background: #c0c0c0;
+  border-right: 1px solid #808080;
+  padding: 4px 0;
+}
+
+.panel-item {
+  display: flex;
+  align-items: center;
+  padding: 4px 6px;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.panel-item:hover {
+  background: #e0e0e0;
+}
+
+.panel-item.active {
+  background: #000080;
+  color: white;
+  border-color: #ffffff #808080 #808080 #ffffff;
+}
+
+.panel-icon {
+  margin-right: 6px;
+  font-size: 14px;
+}
+
+.main-panel {
+  flex: 1;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-title {
+  font-weight: bold;
+  margin-bottom: 12px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #808080;
+}
+
+.settings-section {
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.wallpaper-options {
+  display: flex;
+  gap: 16px;
+}
+
+.wallpaper-list {
+  flex: 1;
+  border: 1px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  background: white;
+  height: 120px;
+  overflow-y: auto;
+}
+
+.wallpaper-item {
+  padding: 4px 6px;
+  cursor: pointer;
+}
+
+.wallpaper-item:hover {
+  background: #e0e0e0;
+}
+
+.wallpaper-item.active {
+  background: #000080;
+  color: white;
+}
+
+.wallpaper-preview {
+  width: 200px;
+}
+
+.preview-container {
+  width: 100%;
+  height: 120px;
+  border: 1px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.preview-container img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.wallpaper-position,
+.wallpaper-upload {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.color-options {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.color-palette {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 4px;
+}
+
+.color-swatch {
+  width: 20px;
+  height: 20px;
+  border: 1px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  cursor: pointer;
+}
+
+.color-swatch.active {
+  border-color: #000000 #ffffff #ffffff #000000;
+  border-width: 2px;
+}
+
+.custom-color-picker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 8px;
+  background: white;
+  border: 1px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+}
+
+.color-preview {
+  width: 20px;
+  height: 20px;
+  border: 1px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+}
+
+.screen-saver-options {
+  display: flex;
+  gap: 16px;
+}
+
+.screen-saver-list {
+  width: 200px;
+}
+
+.screen-saver-settings {
+  flex: 1;
+}
+
+.setting-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.number-input {
+  width: 40px;
+  border: 1px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  padding: 2px 4px;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.checkbox-row input {
+  margin-right: 8px;
+}
+
+.display-settings {
+  display: flex;
+  gap: 16px;
+}
+
+.display-preview {
+  width: 120px;
+  display: flex;
+  justify-content: center;
+}
+
+.monitor-preview {
+  width: 80px;
+  height: 80px;
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.screen {
+  background: #000080;
+  border: 1px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+}
+
+.display-options {
+  flex: 1;
+}
+
+.select-control {
+  width: 200px;
+  border: 1px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  padding: 2px;
+  background-color: #fff;
+}
+
+.select-control:focus {
+  color: #000;
+}
+
+
+.advanced-settings,
+.troubleshooting-settings {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.slider-container {
+  width: 100%;
+}
+
+.slider {
+  margin: 8px 0;
+}
+
+.slider-track {
+  height: 10px;
+  background: white;
+  border: 1px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  position: relative;
+}
+
+.slider-thumb {
+  position: absolute;
+  top: -4px;
+  width: 18px;
+  height: 18px;
+  background: #c0c0c0;
+  border: 1px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  cursor: pointer;
+}
+
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.control-btn {
+  background: #c0c0c0;
+  border: 1px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  padding: 4px 8px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.control-btn:active {
+  border-color: #808080 #ffffff #ffffff #808080;
+  background: #a0a0a0;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: flex-end;
+  padding: 8px;
+  border-top: 1px solid #808080;
+  gap: 8px;
+}

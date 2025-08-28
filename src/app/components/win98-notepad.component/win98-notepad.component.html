@@ -1,0 +1,25 @@
+<div class="notepad-window">
+  <!-- Toolbar -->
+  <app-win98-toolbar [model]="toolbarModel"></app-win98-toolbar>
+
+  <!-- Notepad Content -->
+  <div class="notepad-container">
+    <div class="notepad-content">
+      <textarea
+        #textarea
+        [(ngModel)]="content"
+        (ngModelChange)="onContentChange()"
+        [wrap]="wordWrap ? 'soft' : 'off'"
+        class="notepad-textarea">
+      </textarea>
+    </div>
+
+    <!-- Status Bar -->
+    @if (statusBar) {
+      <div class="status-bar">
+        <div class="status-item">Ln 1, Col 1</div>
+      </div>
+    }
+  </div>
+</div>
+

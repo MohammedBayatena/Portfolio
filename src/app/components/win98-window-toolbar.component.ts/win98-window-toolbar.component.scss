@@ -1,0 +1,72 @@
+.toolbar {
+  display: flex;
+  background: #c0c0c0;
+  border-bottom: 1px solid #808080;
+  padding: 2px 4px;
+  position: relative;
+}
+
+.menu-item {
+  padding: 2px 6px;
+  margin-right: 2px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  position: relative;
+
+  &:hover {
+    border-color: #ffffff #808080 #808080 #ffffff;
+  }
+
+  &.active {
+    border-color: #808080 #ffffff #ffffff #808080;
+    background: #c0c0c0;
+  }
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 200px;
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  box-shadow: 1px 1px 0 0 #000;
+  z-index: 1000;
+  margin-top: 2px;
+}
+
+.dropdown-item {
+  cursor: pointer;
+
+  &.disabled {
+    color: #808080;
+    cursor: default;
+  }
+
+  &:hover:not(.disabled) {
+    background: #000080;
+    color: white;
+
+    .item-shortcut {
+      color: #e0e0e0;
+    }
+  }
+}
+
+.divider {
+  height: 1px;
+  background: #808080;
+  margin: 4px 8px;
+}
+
+.menu-item-content {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 8px;
+}
+
+.item-shortcut {
+  font-size: 10px;
+  color: #808080;
+}

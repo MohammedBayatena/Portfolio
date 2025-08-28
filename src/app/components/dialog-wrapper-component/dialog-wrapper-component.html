@@ -1,0 +1,59 @@
+<div class="dialog dialog-active"
+     [style.left.px]="instance.x"
+     [style.top.px]="instance.y"
+     [style.width.px]="instance.width"
+     [style.height.px]="instance.height"
+     [style.z-index]="instance.zIndex"
+     (click)="onWindowClick()">
+
+  <!-- Title Bar -->
+  <div class="title-bar movable"  #titleBar (mousedown)="onTitleBarMouseDown($event)">
+    <div class="title-bar-text">{{ instance.title }}</div>
+    <div class="title-bar-controls">
+      <button
+        class="close-btn"
+        aria-label="Close"
+        (click)="onCloseClick()"
+      ></button>
+    </div>
+  </div>
+  <div class="dialog-content" #dialogContent>
+    <ng-container
+      *ngComponentOutlet="instance.contentComponent; inputs: instance.contentInputs"
+    ></ng-container>
+  </div>
+
+  <!-- Resize handles -->
+  <div
+    class="resize-handle resize-n"
+    (mousedown)="onResizeMouseDown($event, 'n')"
+  ></div>
+  <div
+    class="resize-handle resize-e"
+    (mousedown)="onResizeMouseDown($event, 'e')"
+  ></div>
+  <div
+    class="resize-handle resize-s"
+    (mousedown)="onResizeMouseDown($event, 's')"
+  ></div>
+  <div
+    class="resize-handle resize-w"
+    (mousedown)="onResizeMouseDown($event, 'w')"
+  ></div>
+  <div
+    class="resize-handle resize-ne"
+    (mousedown)="onResizeMouseDown($event, 'ne')"
+  ></div>
+  <div
+    class="resize-handle resize-se"
+    (mousedown)="onResizeMouseDown($event, 'se')"
+  ></div>
+  <div
+    class="resize-handle resize-sw"
+    (mousedown)="onResizeMouseDown($event, 'sw')"
+  ></div>
+  <div
+    class="resize-handle resize-nw"
+    (mousedown)="onResizeMouseDown($event, 'nw')"
+  ></div>
+</div>

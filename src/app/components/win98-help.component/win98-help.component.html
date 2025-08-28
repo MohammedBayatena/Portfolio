@@ -1,0 +1,71 @@
+<div class="win98-help">
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <div class="toolbar-group">
+      <button class="control-btn" title="Hide">◀ Back</button>
+      <button class="control-btn" title="Show">▶ Next</button>
+    </div>
+
+    <div class="toolbar-divider"></div>
+
+    <div class="toolbar-group">
+      <button class="control-btn" style="font-size: 14px" (click)="toggleClippy()" [class.active]="showClippy"
+              title="Toggle Clippy">
+        📎
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Clippy -->
+    <div *ngIf="showClippy" class="clippy-container">
+      <div class="clippy">
+        <div class="clippy-character">📎</div>
+        <div class="clippy-bubble">
+          <div class="clippy-text">{{ currentClippyMessage }}</div>
+          <div class="clippy-buttons">
+            <button class="clippy-btn" (click)="toggleClippy()">Close</button>
+            <button class="clippy-btn"
+                    (click)="enableSystemClippy()">{{ this.clippyEnabled ? 'Remove From' : 'Pin To' }}  Desktop
+            </button>
+            <button class="clippy-btn" (click)="newClippyMessage()">Next Tip</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Help Navigation -->
+    <div class="help-nav">
+      <div class="nav-title">Contents</div>
+      <div class="nav-items">
+        <div *ngFor="let topic of helpTopics"
+             class="nav-item"
+             [class.active]="selectedTopic.id === topic.id"
+             (click)="selectTopic(topic)">
+          <div class="nav-icon">{{ topic.icon }}</div>
+          <div class="nav-label">{{ topic.title }}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Help Content -->
+    <div class="help-content">
+      <div class="content-header">
+        <div class="content-title">
+          <span class="content-icon">{{ selectedTopic.icon }}</span>
+          {{ selectedTopic.title }}
+        </div>
+      </div>
+
+      <div class="content-body" [innerHTML]="selectedTopic.content"></div>
+    </div>
+  </div>
+
+  <!-- Status Bar -->
+  <div class="status-bar">
+    <div class="status-item">For more information, see Help Contents</div>
+    <div class="status-item" *ngIf="showClippy">Clippy is active</div>
+  </div>
+</div>

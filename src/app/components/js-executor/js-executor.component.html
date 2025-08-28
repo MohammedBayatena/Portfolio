@@ -1,0 +1,22 @@
+<div class="js-executor">
+  <div class="toolbar">
+    <button (click)="executeCode()">Run</button>
+    <button (click)="clearCode()">Clear</button>
+    <button (click)="loadExample()">Load Example</button>
+  </div>
+
+  <div class="code-input">
+    <textarea [(ngModel)]="codeInput" placeholder="Enter JavaScript code here..."></textarea>
+  </div>
+
+  <div class="output-section">
+    <h3>Output:</h3>
+    @if (error) {
+      <div class="error">{{ error }}</div>
+    }
+    @if (output) {
+      <div class="output">{{ output }}</div>
+    }
+    <div class="output" id="output-container"></div>
+  </div>
+</div>

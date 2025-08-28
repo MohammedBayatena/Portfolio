@@ -1,0 +1,154 @@
+<div class="file-explorer">
+
+  <!--  Tool Bar-->
+  <app-win98-toolbar [model]="toolbarModel"></app-win98-toolbar>
+
+  <!--  Address Bar-->
+  <div class="status-bar">
+    <div class="toolbar-group">
+      <button class="control-btn" (click)="navigateUp()" [disabled]="currentFolderId === 'root'">
+        Back
+      </button>
+      <button class="control-btn" (click)="clear()" [disabled]="selectedItems.size === 0">
+        Clear
+      </button>
+    </div>
+    <div class="status-bar-field">
+      <div class="breadcrumb">
+        <img [ngSrc]="addressBarIcon" width="15" height="15" alt=""/>
+        @for (crumb of breadcrumb; track crumb.id; let last = $last) {
+          <span>
+          <span (click)="navigateToBreadcrumb(crumb)" class="breadcrumb-item">{{
+              crumb.name
+            }}</span>
+            @if (!last) {
+              <span class="breadcrumb-separator"> \ </span>
+            }
+        </span>
+        }
+      </div>
+    </div>
+  </div>
+  <!--  Main Views-->
+  <div style="display: flex; height: calc(100% - 60px);">
+    @if (isFolderTreeVisible) {
+      <div class="folder-tree">
+        <div class="folder-tree-header">
+          <p>All Folders</p>
+          <p (click)="hideFolderTree()" style="font-weight: bold; font-size: 9px; cursor: pointer">X</p>
+        </div>
+        <app-navigation-tree-item
+          *ngFor="let item of sideBarNavigationItems;"
+          [item]="item"
+          (bubbleUp)="handleNavigationRequest($event)"
+        ></app-navigation-tree-item>
+      </div>
+    }
+    <div class="main-content">
+      @if (isRootDirectory()) {
+        <div class="sidebar">
+          <img [ngSrc]="'/assets/icons/startMenu/computer_explorer-5.png'" width="32" height="32" alt=""/>
+          <div class="sidebar-title">{{ currentFolderName }}</div>
+          @if (selectedItemMetaData) {
+            <div class="disk-info">
+              <p><strong>{{ selectedItemMetaData.name }}</strong></p>
+              <p>
+                Capacity: {{ appendSizeWithUnitOrDefault(selectedItemMetaData.size, selectedItemMetaData.spaceUnit) }}</p>
+              <p>
+                Free: {{ appendSizeWithUnitOrDefault(selectedItemMetaData.freeSpace, selectedItemMetaData.spaceUnit) }}</p>
+              <div
+                [style.background]="buildPieChartStyleOrDefault(selectedItemMetaData)"
+                class="pie-chart"></div>
+            </div>
+          }
+        </div>
+      }
+      <div class="content"
+           (contextmenu)="showContextMenuForItem($event)">
+        @if (!fileContent) {
+          @if (viewMode === 'details') {
+            <!-- Details View -->
+            <div class="details-container">
+              <div class="details-header">
+                <div class="header-cell" (click)="sortItems('name')">
+                  Name
+                  <span class="sort-indicator" *ngIf="sortBy === 'name'">{{ sortOrder === 'asc' ? '↑' : '↓' }}</span>
+                </div>
+                <div class="header-cell" (click)="sortItems('size')">
+                  Size
+                  <span class="sort-indicator" *ngIf="sortBy === 'size'">{{ sortOrder === 'asc' ? '↑' : '↓' }}</span>
+                </div>
+                <div class="header-cell" (click)="sortItems('type')">
+                  Type
+                  <span class="sort-indicator" *ngIf="sortBy === 'type'">{{ sortOrder === 'asc' ? '↑' : '↓' }}</span>
+                </div>
+              </div>
+
+              <div *ngFor="let item of folderContents"
+                   class="details-row"
+                   [class.selected]="selectedItems.has(item.id)"
+                   (click)="selectItem(item, $event)"
+                   (dblclick)="open(item)">
+                @if (item.iconUrl) {
+                  <img class="icon" [ngSrc]="item.iconUrl" height="16" width="16" alt="{{ item.name }}"/>
+                } @else {
+                  <div class="details-cell details-icon">{{ item.icon }}</div>
+                }
+                <div class="details-cell">{{ item.name }}</div>
+                <div class="details-cell">{{ appendSizeWithUnitOrDefault(item.size, item.spaceUnit) }}</div>
+                <div class="details-cell">{{ item.type }}</div>
+              </div>
+            </div>
+          } @else {
+            <div
+              [class.folder-view]="viewMode === 'large'"
+              [class.small-grid]="viewMode === 'small'"
+              [class.items-list]="viewMode === 'list'">
+              @for (item of folderContents; track item.id) {
+                <div
+                  [class.file-item]="viewMode==='large'"
+                  [class.small-item]="viewMode==='small'"
+                  [class.list-item]="viewMode==='list'"
+                  [class.selected]="selectedItems.has(item.id)"
+                  (click)="selectItem(item, $event)"
+                  (dblclick)="open(item)"
+                >
+                  @if (item.iconUrl) {
+                    <img class="icon" [ngSrc]="item.iconUrl" height="32" width="32" alt="{{ item.name }}"/>
+                  } @else {
+                    <div class="icon">{{ item.icon }}</div>
+                  }
+                  <div class="name">{{ item.name }}</div>
+                </div>
+              }
+            </div>
+          }
+        }
+        @if (fileContent) {
+          <div class="file-view">
+            <div class="file-content">
+              <pre>{{ fileContent }}</pre>
+            </div>
+            <button class="back-button" (click)="fileContent = null">Back</button>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+  <!--  Status Bar-->
+  <div
+    style="background: silver;"
+    class="status-bar">
+    <p class="status-bar-field">{{ statusBarData.firstTab }}</p>
+    <p class="status-bar-field"> {{ statusBarData.secondTab }} </p>
+    <p class="status-bar-field">{{ statusBarData.thirdTab }}</p>
+  </div>
+</div>
+
+<!-- Context Menu -->
+<app-context-menu
+  [x]="contextMenuPosition.x"
+  [y]="contextMenuPosition.y"
+  [visible]="showContextMenu"
+  [contextMenuModel]="contextMenuModel"
+></app-context-menu>

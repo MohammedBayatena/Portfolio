@@ -1,0 +1,62 @@
+<div class="win98-browser">
+  <!-- Menu Bar -->
+  <app-win98-toolbar [model]="toolbarModel"></app-win98-toolbar>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <div class="toolbar-group">
+      <button (click)="goBack()" class="control-btn" [disabled]="!canGoBack">◀ Previous</button>
+      <button (click)="goForward()" class="control-btn" [disabled]="!canGoForward">Next ▶</button>
+      <button (click)="stopLoading()" class="control-btn" [disabled]="!isLoading">Stop ■</button>
+      <button (click)="refreshPage()" class="control-btn">Refresh ↻</button>
+      <button (click)="goHome()" class="control-btn">Home 🏠</button>
+    </div>
+  </div>
+
+  <!-- Address Bar -->
+  <div class="address-bar">
+    <label>Address:</label>
+    <form (ngSubmit)="onUrlSubmit()">
+      <input type="text" [(ngModel)]="url" name="url" class="address-input"/>
+      <button type="submit" class="control-btn">Go</button>
+    </form>
+  </div>
+
+  <!-- Bookmarks Bar -->
+  <div class="bookmarks-bar">
+    <div class="bookmarks-title">Bookmarks:</div>
+    <div class="bookmarks-list">
+      @for (bookmark of bookmarks; track bookmark.name) {
+        <div
+          class="bookmark-item"
+          (click)="navigateToBookmark(bookmark.url)">
+          {{ bookmark.name }}
+        </div>
+      }
+    </div>
+  </div>
+
+
+  <!-- Browser Content -->
+  <div class="browser-content">
+    <!-- Loading Indicator -->
+    @if (isLoading) {
+      <div class="loading-indicator">
+        <div class="loading-text">Loading...</div>
+        <div class="loading-bar">
+          <div class="loading-progress"></div>
+        </div>
+      </div>
+    }
+    <!-- Browser Frame -->
+    <iframe #browserFrame class="browser-frame"></iframe>
+
+  </div>
+
+  <!-- Status Bar -->
+  <div class="status-bar">
+    <div class="status-item">Internet</div>
+    <div class="status-item">{{ url | trim }}</div>
+    <div class="status-item">Done</div>
+  </div>
+</div>

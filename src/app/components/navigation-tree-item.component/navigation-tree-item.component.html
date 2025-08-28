@@ -1,0 +1,32 @@
+<div class="tree-item">
+
+  @if (item.level > 1) {
+    <span style="font-size: 7px; text-wrap: nowrap">---</span>
+  }
+
+  @if (item.children?.length) {
+    <div class="subItemToggle" (click)="toggleItem(item)">
+      {{ item.isExpanded ? '-' : '+' }}
+    </div>
+  }
+
+  <div class="subFolderItem">
+    <img [ngSrc]="item.iconUrl" alt="" width="16" height="16" class="tree-icon"/>
+  </div>
+
+
+  <div class="subFoldersView">
+    <div (click)="onClick($event)" class="mainItemTitle">{{ item.name }}</div>
+    <!-- Children rendered recursively -->
+    @if (item.isExpanded && item.children?.length) {
+      <div class="subFolderContainer">
+        @for (child of item.children; track trackByFn($index, child)) {
+          <app-navigation-tree-item
+            [item]="child"
+            (bubbleUp)="onBubbleUp($event)"
+          ></app-navigation-tree-item>
+        }
+      </div>
+    }
+  </div>
+</div>

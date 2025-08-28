@@ -1,0 +1,100 @@
+<div class="win98-image-viewer">
+  <!-- Menu Bar -->
+  <app-win98-toolbar [model]="toolbarModel"></app-win98-toolbar>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <div class="toolbar-group">
+      <button
+        (click)="prevImage()"
+        class="control-btn"
+        [disabled]="currentIndex <= 0"
+      >
+        Previous
+      </button>
+      <span class="image-counter">{{ currentIndex + 1 }} of {{ images.length }}</span>
+      <button
+        (click)="nextImage()"
+        class="control-btn"
+        [disabled]="currentIndex >= images.length - 1"
+      >
+        Next
+      </button>
+    </div>
+
+    <div class="toolbar-group">
+      <button (click)="zoomOut()" class="control-btn">Zoom Out</button>
+      <div class="zoom-input-group">
+        <input
+          type="number"
+          [(ngModel)]="zoomInput"
+          min="10"
+          max="1000"
+          (keyup.enter)="applyZoom()"
+          size="4"
+        />
+        <span>%</span>
+      </div>
+      <button (click)="zoomIn()" class="control-btn">Zoom In</button>
+    </div>
+
+    <div class="toolbar-group">
+      <button (click)="rotateLeft()" class="control-btn">↺</button>
+      <button (click)="rotateRight()" class="control-btn">↻</button>
+    </div>
+
+    <div class="toolbar-group">
+      <button (click)="fitToWindow()" class="control-btn">Fit Screen</button>
+      <button (click)="actualSize()" class="control-btn">1 : 1</button>
+    </div>
+  </div>
+
+  <!-- Image Display Area -->
+  <div
+    class="image-container"
+    #imageContainer
+    (mousedown)="startDrag($event)"
+    (mousemove)="drag($event)"
+    (mouseup)="endDrag()"
+    (mouseleave)="endDrag()"
+  >
+    <!-- Loading Indicator -->
+    @if (isLoading) {
+      <div class="loading-indicator">
+        <div class="loading-text">Loading image...</div>
+        <div class="loading-bar">
+          <div class="loading-progress"></div>
+        </div>
+      </div>
+    }
+
+    <!-- Error Message -->
+    @if (error) {
+      <div class="error-message">
+        <div class="error-icon">⚠️</div>
+        <div>{{ error }}</div>
+      </div>
+    }
+
+    <!-- Image -->
+    <img
+      #imageElement
+      [ngSrc]="images[currentIndex]"
+      [style.transform]="
+      `translate(${translateX}px,${translateY}px) `+
+      `scale(${zoomLevel / 100}) ` +
+      `rotate( ${rotation}deg)`"
+      [style.cursor]="zoomLevel > 100 ? 'grab' : 'default'"
+      alt="Image"
+      fill/>
+  </div>
+
+  <!-- Status Bar -->
+  <div class="status-bar">
+    <div class="status-item">{{ getImageName() | filename }}</div>
+    <div class="status-item">{{ imageInfo$ | async }}</div>
+    <div class="status-item">{{ zoomLevel }}%</div>
+    <div class="status-item">{{ rotation }}°</div>
+    <div class="status-item">Ready</div>
+  </div>
+</div>
