@@ -1,6 +1,6 @@
 
 export default {
-  basePath: 'Portfolio',
+  basePath: 'https://mohammedbayatena.github.io/Portfolio',
   supportedLocales: {
   "en-US": ""
 },
