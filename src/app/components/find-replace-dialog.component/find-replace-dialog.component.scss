@@ -1,7 +1,7 @@
 .dialog-window {
   height: 100%;
   width: 100%;
-  background: #c0c0c0;
+  background: var(--theme-background);
   border: 2px solid;
   border-color: #ffffff #808080 #808080 #ffffff;
   font-family: 'MS Sans Serif', sans-serif;
@@ -10,19 +10,9 @@
   box-shadow: 1px 1px 0 0 #000;
 }
 
-.title-bar {
-  background: #000080;
-  color: white;
-  padding: 2px 4px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: bold;
-}
-
 .window-controls {
   button {
-    background: #c0c0c0;
+    background: var(--theme-background);
     border: 1px solid;
     border-color: #ffffff #808080 #808080 #ffffff;
     width: 16px;
@@ -49,7 +39,7 @@
   padding: 2px 4px;
   border: 1px solid;
   border-color: #808080 #ffffff #ffffff #808080;
-  background: white;
+  background: var(--theme-white-backgrounds);
   font-family: inherit;
   font-size: inherit;
 }
@@ -82,14 +72,15 @@
 .control-btn {
   min-width: 75px;
   padding: 4px 8px;
-  background: #c0c0c0;
+  background: var(--theme-background);
   border: 1px solid;
   border-color: #ffffff #808080 #808080 #ffffff;
   font-size: 11px;
   cursor: pointer;
 
   &:hover {
-    background: #e0e0e0;
+    background: var(--theme-hover-background-color);
+    color: var(--theme-hover-text-color);
   }
 
   &:active {

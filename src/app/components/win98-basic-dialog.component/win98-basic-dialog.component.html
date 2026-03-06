@@ -1,6 +1,6 @@
 @if (isVisible && options) {
   <div class="dialog-overlay" (click)="onNo()">
-    <div class="dialog-window" (click)="$event.stopPropagation()">
+    <div class="dialog-window window" (click)="$event.stopPropagation()">
       <!-- Title Bar -->
       <div class="title-bar">
         <div class="title-bar-text">{{ options.title }}</div>

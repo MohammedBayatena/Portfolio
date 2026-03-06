@@ -1,7 +1,7 @@
 $border-color-light: #ffffff;
 $border-color-dark: #808080;
-$bg-light: #c0c0c0;
-$bg-dark: #000080;
+$bg-light: var(background-color-light);
+$bg-dark: var(--theme-background-color-dark);
 $bg-black: #000;
 $font-family: "MS Sans Serif", sans-serif;
 $font-size-small: 10px;
@@ -140,7 +140,8 @@ $white: #fff;
         border-bottom: 1px solid #e0e0e0;
 
         &:hover {
-          background: #e0e0e0;
+          background: var(--theme-hover-background-color);
+          color: var(--theme-hover-text-color);
         }
 
         &.active {

@@ -1,7 +1,7 @@
 .win98-search {
   width: 100%;
   height: 100%;
-  background: #c0c0c0;
+  background: var(--theme-background);
   border: 2px solid;
   border-color: #ffffff #808080 #808080 #ffffff;
   font-family: 'MS Sans Serif', sans-serif;
@@ -13,7 +13,7 @@
 
   .search-panel {
     padding: 12px;
-    background: #c0c0c0;
+    background: var(--theme-background);
     border-bottom: 1px solid #808080;
   }
 
@@ -33,7 +33,7 @@
       border-color: #808080 #ffffff #ffffff #808080;
       padding: 2px 4px;
       font-size: 11px;
-      background: white;
+      background: var(--theme-white-backgrounds);
     }
   }
 
@@ -47,7 +47,7 @@
       border-color: #808080 #ffffff #ffffff #808080;
       padding: 2px;
       font-size: 11px;
-      background: white;
+      background: var(--theme-white-backgrounds);
     }
 
     .select-control:focus {
@@ -105,7 +105,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 4px 8px;
-    background: #c0c0c0;
+    background: var(--theme-background);
     border-bottom: 1px solid #808080;
 
     .results-title {
@@ -113,7 +113,7 @@
     }
 
     .results-status {
-      color: #000080;
+      color: var(--theme-text-color);
       font-weight: bold;
     }
 
@@ -125,7 +125,7 @@
   .results-list {
     flex: 1;
     overflow-y: auto;
-    background: white;
+    background: var(--theme-white-backgrounds);
     border-top: 1px solid #ffffff;
     border-bottom: 1px solid #808080;
   }
@@ -167,7 +167,8 @@
     cursor: pointer;
 
     &:hover {
-      background: #e0e0e0;
+      background: var(--theme-hover-background-color);
+      color: var(--theme-hover-text-color);
     }
 
     .result-icon {
@@ -225,7 +226,7 @@
       .icon-btn {
         width: 20px;
         height: 20px;
-        background: #c0c0c0;
+        background: var(--theme-background);
         border: 1px solid;
         border-color: #ffffff #808080 #808080 #ffffff;
         font-size: 10px;
@@ -235,7 +236,8 @@
         justify-content: center;
 
         &:hover {
-          background: #e0e0e0;
+          background: var(--theme-hover-background-color);
+          color: var(--theme-hover-text-color);
         }
 
         &:active {
@@ -248,7 +250,7 @@
 
   .status-bar {
     display: flex;
-    background: #c0c0c0;
+    background: var(--theme-background);
     border-top: 1px solid #808080;
     padding: 2px 4px;
 
@@ -263,14 +265,15 @@
 .control-btn {
   min-width: 75px;
   padding: 4px 8px;
-  background: #c0c0c0;
+  background: var(--theme-background);
   border: 1px solid;
   border-color: #ffffff #808080 #808080 #ffffff;
   font-size: 11px;
   cursor: pointer;
 
   &:hover {
-    background: #e0e0e0;
+    background: var(--theme-hover-background-color);
+    color: var(--theme-hover-text-color);
   }
 
   &:active {
@@ -291,18 +294,18 @@
   }
 
   &::-webkit-scrollbar-track {
-    background: #c0c0c0;
+    background: var(--theme-background);
     border: 1px solid #808080;
   }
 
   &::-webkit-scrollbar-thumb {
-    background: #c0c0c0;
+    background: var(--theme-background);
     border: 1px solid;
     border-color: #ffffff #808080 #808080 #ffffff;
   }
 
   &::-webkit-scrollbar-button {
-    background: #c0c0c0;
+    background: var(--theme-background);
     border: 1px solid;
     border-color: #ffffff #808080 #808080 #ffffff;
     height: 14px;

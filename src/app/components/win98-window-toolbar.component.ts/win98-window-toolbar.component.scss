@@ -1,6 +1,6 @@
 .toolbar {
   display: flex;
-  background: #c0c0c0;
+  background: var(--theme-background);
   border-bottom: 1px solid #808080;
   padding: 2px 4px;
   position: relative;
@@ -15,11 +15,13 @@
 
   &:hover {
     border-color: #ffffff #808080 #808080 #ffffff;
+    background: var(--theme-hover-background-color);
+    color: var(--theme-hover-text-color);
   }
 
   &.active {
     border-color: #808080 #ffffff #ffffff #808080;
-    background: #c0c0c0;
+    background: var(--theme-background);
   }
 }
 
@@ -28,7 +30,7 @@
   top: 100%;
   left: 0;
   min-width: 200px;
-  background: #c0c0c0;
+  background: var(--theme-background);
   border: 2px solid;
   border-color: #ffffff #808080 #808080 #ffffff;
   box-shadow: 1px 1px 0 0 #000;
@@ -45,8 +47,8 @@
   }
 
   &:hover:not(.disabled) {
-    background: #000080;
-    color: white;
+    background: var(--theme-hover-background-color);
+    color: var(--theme-hover-text-color);
 
     .item-shortcut {
       color: #e0e0e0;

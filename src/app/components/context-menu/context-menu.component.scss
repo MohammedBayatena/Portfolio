@@ -1,7 +1,7 @@
 // Context Menu
 .context-menu {
   position: fixed;
-  background: #c0c0c0;
+  background: var(--theme-background);
   border: 2px solid;
   border-color: #ffffff #808080 #808080 #ffffff;
   box-shadow: 1px 1px 0 0 #000;
@@ -22,8 +22,8 @@
     }
 
     &:hover {
-      background: #000080;
-      color: white;
+      background: var(--theme-hover-background-color);
+      color: var(--theme-hover-text-color);
     }
 
     // Nested submenu
@@ -32,7 +32,7 @@
       left: 100%; // Place submenu to the right of the parent
       top: 0;
       display: none; // Hidden by default
-      background: #c0c0c0;
+      background: var(--theme-background);
       min-width: 150px;
       border: 2px solid;
       border-color: #ffffff #808080 #808080 #ffffff;
@@ -44,8 +44,8 @@
         cursor: pointer;
 
         &:hover {
-          background: #000080;
-          color: white;
+          background: var(--theme-hover-background-color);
+          color: var(--theme-hover-text-color)
         }
       }
     }
@@ -53,6 +53,8 @@
     // Show submenu on hover
     &:hover .submenu {
       display: block;
+      background: var(--theme-hover-background-color);
+      color: var(--theme-hover-text-color);
     }
   }
 
@@ -62,8 +64,8 @@
     pointer-events: none; // Disable hover and click events
 
     &:hover {
-      background: #f0f0f0; // Prevent hover background change
-      color: #a9a9a9; // Prevent hover color change
+      background: var(--theme-disabled-hover-background-color); // Prevent hover background change
+      color: var(--theme-disabled-hover-text-color); // Prevent hover color change
     }
   }
 

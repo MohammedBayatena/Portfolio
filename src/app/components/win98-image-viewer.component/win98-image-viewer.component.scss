@@ -2,7 +2,7 @@
   height: 100%;
   width: 100%; // Ensure the Viewer takes up the full available space
   min-width: fit-content;
-  background: #c0c0c0;
+  background: var(--theme-background);
   border: 2px solid;
   border-color: #ffffff #808080 #808080 #ffffff;
   font-family: "MS Sans Serif", sans-serif;
@@ -17,7 +17,7 @@
   display: flex;
   flex-wrap: wrap;
   padding: 4px;
-  background: #c0c0c0;
+  background: var(--theme-background);
   border-bottom: 1px solid #808080;
   gap: 8px;
 }
@@ -51,7 +51,7 @@
     height: 20px;
     border: 1px solid;
     border-color: #808080 #ffffff #ffffff #808080;
-    background: white;
+    background: var(--theme-white-backgrounds);
     font-size: 11px;
     padding: 0 2px;
   }
@@ -85,7 +85,7 @@
 .loading-bar {
   width: 200px;
   height: 10px;
-  background: #c0c0c0;
+  background: var(--theme-background);
   border: 1px solid;
   border-color: #808080 #ffffff #ffffff #808080;
 }
@@ -93,7 +93,7 @@
 .loading-progress {
   height: 100%;
   width: 30%;
-  background: #000080;
+  background: var(--theme-progress-color);
   animation: loading 1.5s infinite;
 }
 
@@ -116,7 +116,7 @@
   transform: translate(-50%, -50%);
   text-align: center;
   color: white;
-  background: #c0c0c0;
+  background: var(--theme-background);
   border: 2px solid;
   border-color: #ffffff #808080 #808080 #ffffff;
   padding: 15px;
@@ -138,7 +138,7 @@
 
 .status-bar {
   display: flex;
-  background: #c0c0c0;
+  background: var(--theme-background);
   border-top: 1px solid #808080;
   padding: 2px 4px;
   flex-wrap: wrap;
