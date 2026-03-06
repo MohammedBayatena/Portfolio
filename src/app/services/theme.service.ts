@@ -237,8 +237,8 @@ export class ThemeService {
   private switchStylesheet(themeId: string): void {
     // Determine which stylesheet to load based on theme ID
     const stylesheetMap: { [key: string]: string } = {
-      'windows98-Pink': '/assets/styles/98-pink.css',
-      'windows98-default': '/assets/styles/98.css'
+      'windows98-Pink': 'assets/styles/98-pink.css',
+      'windows98-default': 'assets/styles/98.css'
     };
 
     let stylesheetPath = stylesheetMap[themeId];
