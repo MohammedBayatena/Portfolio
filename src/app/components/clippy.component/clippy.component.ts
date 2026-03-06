@@ -51,7 +51,7 @@ export class ClippyComponent implements OnInit {
     "Did you know you can customize your desktop?",
     "You might want to Check Internet Explorer. Would You Like me to open it for you?",
     "You seem to be clicking around a lot. Are you looking for something specific?",
-    "You can always hide Clippy from Start Menu -> Help -> Clippy -> Remove From Desktop"
+    "You can always hide Clippy from Start Menu → Help → Clippy → Remove From Desktop"
   ];
 
   // Component state

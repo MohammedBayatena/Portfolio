@@ -13,28 +13,12 @@
 
 .dialog-window {
   width: 400px;
-  background: #c0c0c0;
-  border: 2px solid;
-  border-color: #ffffff #808080 #808080 #ffffff;
-  font-family: 'MS Sans Serif', sans-serif;
   font-size: 11px;
-  color: #000;
-  box-shadow: 1px 1px 0 0 #000;
-}
-
-.title-bar {
-  background: #000080;
-  color: white;
-  padding: 2px 4px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: bold;
 }
 
 .window-controls {
   button {
-    background: #c0c0c0;
+    background: var(--theme-background);
     border: 1px solid;
     border-color: #ffffff #808080 #808080 #ffffff;
     width: 16px;
@@ -69,23 +53,4 @@
 .button-group {
   display: flex;
   gap: 8px;
-}
-
-.control-btn {
-  min-width: 75px;
-  padding: 4px 8px;
-  background: #c0c0c0;
-  border: 1px solid;
-  border-color: #ffffff #808080 #808080 #ffffff;
-  font-size: 11px;
-  cursor: pointer;
-
-  &:hover {
-    background: #e0e0e0;
-  }
-
-  &:active {
-    border-color: #808080 #ffffff #ffffff #808080;
-    background: #a0a0a0;
-  }
 }

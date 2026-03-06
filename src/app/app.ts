@@ -34,6 +34,7 @@ import {DialogWrapper} from './components/dialog-wrapper-component/dialog-wrappe
 import {Win98PaintComponent} from './components/win98-paint.component/win98-paint.component';
 import {Win98BasicDialogComponent} from './components/win98-basic-dialog.component/win98-basic-dialog.component';
 import {ClippyComponent} from './components/clippy.component/clippy.component';
+import {Theme} from './models/theme.model';
 
 @Component({
   selector: 'app-root',
@@ -74,8 +75,7 @@ export class App implements OnInit, AfterViewInit {
     private dialogService: DialogService,
     private stateService: StateService,
     private mediaService: MediaFileService,
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     // Load saved state if available
@@ -105,7 +105,7 @@ export class App implements OnInit, AfterViewInit {
     // Subscribe to theme changes
     this.themeService.currentTheme$.subscribe((theme) => {
       this.currentTheme = theme;
-      this.applyTheme(theme, this.document);
+      // this.applyTheme(theme, this.document);
     });
 
     // Subscribe to window changes

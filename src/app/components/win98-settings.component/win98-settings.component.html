@@ -5,7 +5,7 @@
     <div class="side-panel">
       <div
         class="panel-item"
-        [class.active]="activePanel === 'appearance'"
+        [class.active]="activePanel() === 'appearance'"
         (click)="setActivePanel('appearance')"
       >
         <div class="panel-icon">🖼️</div>
@@ -14,7 +14,7 @@
 
       <div
         class="panel-item"
-        [class.active]="activePanel === 'screen-saver'"
+        [class.active]="activePanel() === 'screen-saver'"
         (click)="setActivePanel('screen-saver')"
       >
         <div class="panel-icon">📺</div>
@@ -23,7 +23,7 @@
 
       <div
         class="panel-item"
-        [class.active]="activePanel === 'settings'"
+        [class.active]="activePanel() === 'settings'"
         (click)="setActivePanel('settings')"
       >
         <div class="panel-icon">⚙️</div>
@@ -32,7 +32,7 @@
 
       <div
         class="panel-item"
-        [class.active]="activePanel === 'advanced'"
+        [class.active]="activePanel() === 'advanced'"
         (click)="setActivePanel('advanced')"
       >
         <div class="panel-icon">🔧</div>
@@ -42,11 +42,10 @@
 
     <!-- Main Panel -->
     <div class="main-panel">
-      @if (activePanel === 'appearance') {
+      @if (activePanel() === 'appearance') {
         <!-- Appearance Panel -->
         <div class="panel-content">
           <div class="panel-title">Appearance</div>
-
           <div class="settings-section">
             <div class="section-title">Wallpaper</div>
             <div class="wallpaper-options">
@@ -54,39 +53,72 @@
                 @for (wp of wallpapers; track wp.name) {
                   <div
                     class="wallpaper-item"
-                    [class.active]="wallpaper === wp.value"
+                    [class.active]="selectedWallpaper() === wp.value"
                     (click)="selectWallpaper(wp.value)"
                   >
                     {{ wp.name }}
                   </div>
                 }
               </div>
-
               <div class="wallpaper-preview">
-                <div
-                  class="preview-container"
-                  [style.background-color]="
-                  wallpaper === 'none' ? backgroundColor : 'transparent'
-                "
-                >
-                  @if (wallpaper !== 'none') {
-                    <img
-                      [src]="wallpaper"
-                      alt="Wallpaper preview"
-                    />
-                  }
+                <div class="preview-container" [style.background-color]="backgroundColor() || '#008080'">
 
+                  <!-- Desktop Preview Snapshot -->
+                  <div class="desktop-snapshot">
+                    <!-- Desktop Icons Row -->
+                    <div class="snapshot-icons-row">
+                      <div class="snapshot-icon">
+                        <img [ngSrc]="'assets/icons/startMenu/computer_explorer-5.png'" width="16" height="16"
+                             alt=""/>
+                      </div>
+                    </div>
+
+                    <!-- Preview Window -->
+                    <div class="snapshot-window"
+                         [style.background-color]="draftTheme()?.colors?.background_color">
+                      <div class="snapshot-titlebar"
+                           [style.background-color]="draftTheme()?.colors?.background_color_dark">
+                        <div class="snapshot-titlebar-text">Window</div>
+                      </div>
+                      <div class="snapshot-window-content">
+                        <div class="snapshot-window-icon">
+                          <img [ngSrc]="'assets/icons/files/folder.png'" width="16" height="16" alt=""/>
+                        </div>
+                        <div class="snapshot-window-icon">
+                          <img [ngSrc]="'assets/icons/files/imageico.png'" width="16" height="16" alt=""/>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Taskbar -->
+                    <div class="snapshot-taskbar"
+                         [style.background-color]="draftTheme()?.colors?.background_color">
+                      <div class="snapshot-start-btn"
+                           [style.background-color]="draftTheme()?.colors?.background_color_dark">Start
+                      </div>
+                      <div class="snapshot-taskbar-spacer"></div>
+                      <div class="snapshot-clock">12:34PM</div>
+                    </div>
+                  </div>
+                  <div class="desktop-snapshot-wallpaper">
+                    @if (resolvedWallpaperUrl(); as url) {
+                      <img
+                        [ngSrc]="url"
+                        alt="Wallpaper preview"
+                        width="200"
+                        height="200"
+                      />
+                    }
+                  </div>
                 </div>
-
                 <div class="wallpaper-position">
                   <label>Position:</label>
-                  <select [(ngModel)]="wallpaperPosition">
+                  <select [ngModel]="wallpaperPosition()" (ngModelChange)="wallpaperPosition.set($event)">
                     <option value="center">Center</option>
                     <option value="tile">Tile</option>
                     <option value="stretch">Stretch</option>
                   </select>
                 </div>
-
                 <div class="wallpaper-upload">
                   <button class="control-btn" (click)="openFilePicker()">
                     Browse...
@@ -101,55 +133,70 @@
                 </div>
               </div>
             </div>
-          </div>
-
-          <div class="settings-section">
-            <div class="section-title">Background Color</div>
-            <div class="color-options">
-              <div class="color-palette">
-                @for (color of colorPalette; track $index) {
-                  <div
-                    class="color-swatch"
-                    [style.background-color]="color"
-                    [class.active]="backgroundColor === color"
-                    (click)="selectColor(color)"
-                  ></div>
-                }
-              </div>
-
-              <div class="custom-color">
-                <button class="control-btn" (click)="toggleCustomColorPicker()">
-                  Other...
-                </button>
-
-                @if (showCustomColorPicker) {
-                  <div class="custom-color-picker">
+            <div class="settings-section">
+              <div class="section-title">Theme</div>
+              <div class="theme-options">
+                <div class="theme-list">
+                  @for (theme of themes$ | async; track theme.id) {
                     <div
-                      class="color-preview"
-                      [style.background-color]="customColor"
-                    ></div>
-                    <input
-                      type="color"
-                      [(ngModel)]="customColor"
-                      (change)="selectColor(customColor)"
-                    />
-                    <button class="control-btn" (click)="selectColor(customColor)">
-                      OK
-                    </button>
-                    <button
-                      class="control-btn"
-                      (click)="showCustomColorPicker = false"
+                      class="theme-item"
+                      [class.active]="draftTheme()?.id === theme.id"
+                      (click)="selectTheme(theme)"
                     >
-                      Cancel
-                    </button>
-                  </div>
-                }
+                      {{ theme.displayName }}
+                    </div>
+                  }
+                </div>
+              </div>
+            </div>
+            <div class="settings-section">
+              <div class="section-title">Background Color</div>
+              <div class="color-options">
+                <div class="color-palette">
+                  @for (color of colorPalette; track $index) {
+                    <div
+                      class="color-swatch"
+                      [style.background-color]="color"
+                      [class.active]="backgroundColor() === color"
+                      (click)="selectColor(color)"
+                    ></div>
+                  }
+                </div>
 
+                <div class="custom-color">
+                  <button class="control-btn" (click)="toggleCustomColorPicker()">
+                    Other...
+                  </button>
+
+                  @if (showCustomColorPicker()) {
+                    <div class="custom-color-picker">
+                      <div
+                        class="color-preview"
+                        [style.background-color]="customColor()"
+                      ></div>
+                      <input
+                        type="color"
+                        [ngModel]="customColor()"
+                        (ngModelChange)="customColor.set($event); selectColor($event)"
+                      />
+                      <button class="control-btn" (click)="selectColor(customColor())">
+                        OK
+                      </button>
+                      <button
+                        class="control-btn"
+                        (click)="showCustomColorPicker.set(false)"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  }
+
+                </div>
               </div>
             </div>
           </div>
         </div>
-      } @else if (activePanel === 'screen-saver') {
+      } @else if (activePanel() === 'screen-saver') {
         <!-- Screen Saver Panel -->
         <div class="panel-content">
           <div class="panel-title">Screen Saver</div>
@@ -159,7 +206,8 @@
             <div class="screen-saver-options">
               <div class="screen-saver-list">
                 <select
-                  [(ngModel)]="screenSaver"
+                  [ngModel]="screenSaver()"
+                  (ngModelChange)="screenSaver.set($event)"
                   class="select-control">
                   @for (ss of screenSavers; track ss.name) {
                     <option [value]="ss.value">
@@ -174,7 +222,8 @@
                   <label>Wait:</label>
                   <input
                     type="number"
-                    [(ngModel)]="screenSaverTimeout"
+                    [ngModel]="screenSaverTimeout()"
+                    (ngModelChange)="screenSaverTimeout.set($event)"
                     min="1"
                     max="120"
                     class="number-input"
@@ -209,7 +258,7 @@
             </div>
           </div>
         </div>
-      } @else if (activePanel === 'settings') {
+      } @else if (activePanel() === 'settings') {
         <!-- Settings Panel -->
         <div class="panel-content">
           <div class="panel-title">Settings</div>
@@ -221,8 +270,8 @@
                 <div class="monitor-preview">
                   <div
                     class="screen"
-                    [style.width.px]="parseInt(resolution.split('x')[0]) / 16"
-                    [style.height.px]="parseInt(resolution.split('x')[1]) / 16"
+                    [style.width.px]="parseInt(resolution().split('x')[0]) / 16"
+                    [style.height.px]="parseInt(resolution().split('x')[1]) / 16"
                   ></div>
                 </div>
               </div>
@@ -230,7 +279,7 @@
               <div class="display-options">
                 <div class="setting-row">
                   <label>Screen area:</label>
-                  <select [(ngModel)]="resolution" class="select-control">
+                  <select [ngModel]="resolution()" (ngModelChange)="resolution.set($event)" class="select-control">
                     @for (res of resolutions; track $index) {
                       <option [value]="res">
                         {{ res }}
@@ -241,7 +290,7 @@
 
                 <div class="setting-row">
                   <label>Colors:</label>
-                  <select [(ngModel)]="colorDepth" class="select-control">
+                  <select [ngModel]="colorDepth()" (ngModelChange)="colorDepth.set($event)" class="select-control">
                     @for (depth of colorDepths; track $index) {
                       <option [value]="depth">
                         {{ depth }}
@@ -252,7 +301,7 @@
 
                 <div class="setting-row">
                   <label>Refresh frequency:</label>
-                  <select [(ngModel)]="refreshRate" class="select-control">
+                  <select [ngModel]="refreshRate()" (ngModelChange)="refreshRate.set($event)" class="select-control">
                     @for (rate of refreshRates; track $index) {
                       <option [value]="rate">
                         {{ rate }}
@@ -272,7 +321,7 @@
             </div>
           </div>
         </div>
-      } @else if (activePanel === 'advanced') {
+      } @else if (activePanel() === 'advanced') {
         <!-- Advanced Panel -->
         <div class="panel-content">
           <div class="panel-title">Advanced</div>

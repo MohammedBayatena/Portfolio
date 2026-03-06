@@ -33,7 +33,8 @@
     .mainItemTitle {
       &:hover {
         text-decoration: underline;
-        background-color: #E6E6FA;
+        background: var(--theme-hover-background-color);
+        color: var(--theme-hover-text-color);
       }
     }
 

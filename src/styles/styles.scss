@@ -1,0 +1,154 @@
+/* You can add global styles to this file, and also import other style files */
+.resize-handle {
+  position: absolute;
+  background-color: transparent;
+
+  &.resize-n {
+    top: 0;
+    left: 10px;
+    right: 10px;
+    height: 5px;
+    cursor: n-resize;
+  }
+
+  &.resize-e {
+    top: 10px;
+    right: 0;
+    bottom: 10px;
+    width: 5px;
+    cursor: e-resize;
+  }
+
+  &.resize-s {
+    bottom: 0;
+    left: 10px;
+    right: 10px;
+    height: 5px;
+    cursor: s-resize;
+  }
+
+  &.resize-w {
+    top: 10px;
+    left: 0;
+    bottom: 10px;
+    width: 5px;
+    cursor: w-resize;
+  }
+
+  &.resize-ne {
+    top: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    cursor: ne-resize;
+  }
+
+  &.resize-se {
+    bottom: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    cursor: se-resize;
+  }
+
+  &.resize-sw {
+    bottom: 0;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    cursor: sw-resize;
+  }
+
+  &.resize-nw {
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    cursor: nw-resize;
+  }
+}
+
+.movable {
+  cursor: move;
+}
+
+.control-btn {
+  min-width: 75px;
+  height: 22px;
+  padding: 4px 8px;
+  border: 1px solid;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+// CSS Variables for theming
+:root {
+  --theme-text-color: #000000;
+  --theme-progress-color: #000080;
+  --theme-start-menu-decoration-color: #000080;
+
+  /* BACKGROUND VARIATIONS:
+     --background-color is the main button/window face. */
+  --theme-background-color: #C0C0C0;
+  --theme-background-color-dark: #808080; // (Used for borders/shadows)
+  --theme-background-color-light: #C0C0C0; // (Used for bevel highlights)
+  --theme-background: #C0C0C0; // (The main app/body background)
+  --theme-white-backgrounds: white;
+
+  /* HOVER STATES */
+  --theme-hover-background-color: #000080;
+  --theme-hover-text-color: #FFFFFF;
+
+  /* DISABLED:
+    Washed out colors to look "inactive" but still fit the palette. */
+  --theme-disabled-hover-text-color: #808080;
+  --theme-disabled-hover-background-color: #C0C0C0;
+
+  /* DESKTOP */
+  --theme-desktop-background: #008080;
+
+  /* SELECTED ITEMS:
+      This is the highest contrast combination
+      in the theme, ensuring the user clearly sees what is selected. */
+  --theme-selected-item-color: #000080;
+  --theme-selected-item-text-color: #FFFFFF;
+
+  /* Window TitleBar, Gradient Coloring*/
+  --theme-title-bar-gradient-start: navy;
+  --theme-title-bar-gradient-end: #1084d0;
+
+  /*Task Bar Theme*/
+  --theme-task-bar-start-button-background-color: silver;
+  --theme-task-bar-item-background:
+    url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAG0lEQVQYV2M8cODAf3t7ewbG/////z948CADAFuqCj64BtLKAAAAAElFTkSuQmCC'); //GreyMesh
+
+
+
+
+
+  /*Other Theming Values*/
+  --icon-size: 32px;
+  --icon-font: "MS Sans Serif";
+  --icon-color: #ffffff;
+  --icon-selected-color: #ffffff;
+  --icon-background: transparent;
+  --icon-selected-background: rgba(0, 0, 128, 0.5);
+
+  --window-border: 2px solid #c0c0c0;
+  --window-border-radius: 0;
+  --titlebar-height: 24px;
+  --titlebar-background: var(--theme-background-color);
+  --titlebar-color: #ffffff;
+  --titlebar-font-weight: bold;
+  --close-button-background: #c0c0c0;
+  --close-button-color: #000000;
+  --minimize-button-background: #c0c0c0;
+  --minimize-button-color: #000000;
+
+  --taskbar-height: 24px;
+  --taskbar-background: #c0c0c0;
+  --taskbar-button-background: #c0c0c0;
+  --taskbar-button-color: #000000;
+  --taskbar-button-selected-background: #808080;
+  --max-zindex: 999
+}
