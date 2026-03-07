@@ -13,7 +13,7 @@ ng serve
 ## Deployment
 
 ```
- ng build --output-path docs --base-href Portfolio
+ ng build --base-href=/Portfolio/ --deploy-url=/Portfolio/
  ng deploy
 ```
 
